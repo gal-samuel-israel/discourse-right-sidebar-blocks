@@ -3,14 +3,14 @@
 </h3>
 
 <div class="gamification--container">
-  {{#each gamificationList.users as |item index|}}
+  {{#each gamificationList.users as |item|}}
     <div class="gamification--user">
       <span data-user-card={{item.username}} class="gamification--user-badge">
         {{avatar item imageSize="small"}}
         {{html-safe item.username}}
       </span>
       <span class="gamification--user-score">
-         {{#switch {{index}} }} 
+         {{#switch @index}} 
             {{#case 0}} 
                 <span class="lb-gold">{{d-icon "crown"}}</span>
             {{/case}}
