@@ -69,18 +69,24 @@
   justify-self: end;
 }
 
-.gamification--user:nth-child(1) .svg-icon{ 
+.gamification--user:nth-child(1) .svg-icon { 
     fill: #ffd82a;
 }
-.gamification--user:nth-child(2) .svg-icon{ 
+.gamification--user:nth-child(2) .svg-icon { 
     fill: #c4c4c4;
 }
-.gamification--user:nth-child(3) .svg-icon{ 
+.gamification--user:nth-child(3) .svg-icon { 
     fill: #cd7f32;    
 }
-.gamification--user:nth-child(n+4) .svg-icon{ 
+.gamification--user:nth-child(n+4) .svg-icon { 
     fill:transparent;  
 }
+
+.gamification--view-all {font-weight:bold;}
+.gamification--view-badges,
+.gamification--view-all {color: var(--primary); text-decoration: none;}
+.gamification--view-badges:hover,
+.gamification--view-all:hover {color: var(--primary); text-decoration: underline;}
 
 // Recent replies
 .recent-replies--reply {
