@@ -9,6 +9,7 @@ export default class Gamification extends Component {
   @tracked loading = false;
   @tracked canLoadMore=true;
   @tracked gamificatinObj = null;
+  @tracked period: "all";
 
   constructor() {
     super(...arguments);
@@ -19,14 +20,14 @@ export default class Gamification extends Component {
     .then((scores) => {
         this.gamificatinObj = scores;
         this.gamificatinObj.users = scores.users.slice(0, count);
-        console.log(scores);
+        //console.log(scores);
       }
     );
   }
 
   @action
   changePeriod(period) {
-    this.set("period", period);
+    this.period = period;
     return ajax(
       `/leaderboard/${this.gamificatinObj.leaderboard.id}?period=${this.period}`
     )
