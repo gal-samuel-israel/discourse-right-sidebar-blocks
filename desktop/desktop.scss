@@ -50,6 +50,38 @@
   justify-self: end;
 }
 
+// Gamification
+.gamification--user {
+  margin-bottom: 0.5em;
+  display: grid;
+  grid-template-columns: auto 25%;
+  grid-template-areas: "left right";
+  grid-column-gap: 1em;
+  cursor: pointer;
+}
+
+.gamification--user-badge {
+  grid-area: left;
+}
+
+.gamification--user-score {
+  grid-area: right;
+  justify-self: end;
+}
+
+.gamification--user:nth-child(1) .svg-icon{ 
+    fill: #ffd82a;
+}
+.gamification--user:nth-child(2) .svg-icon{ 
+    fill: #c4c4c4;
+}
+.gamification--user:nth-child(3) .svg-icon{ 
+    fill: #cd7f32;    
+}
+.gamification--user:nth-child(n+4) .svg-icon{ 
+    fill:transparent;  
+}
+
 // Recent replies
 .recent-replies--reply {
   border-bottom: 1px solid var(--primary-low);
