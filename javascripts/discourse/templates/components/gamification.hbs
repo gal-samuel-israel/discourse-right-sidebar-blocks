@@ -5,7 +5,6 @@
 <PeriodChooser @period={{period}} @action={{action "changePeriod"}} @fullDay={{false}} class="gamification--period-chooser"/>
 
 <div class="gamification--container"
-  {{did-insert this.gamificatinObj.users}}
   {{did-update this.gamificatinObj.users}}
 >
   {{#each gamificatinObj.users as |item|}}
