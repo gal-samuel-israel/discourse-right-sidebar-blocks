@@ -4,7 +4,7 @@
 
 <!-- <PeriodChooser @period={{period}} @action={{action "changePeriod"}} @fullDay={{false}} class="gamification--period-chooser"/> -->
 
-<a class="gamification--view-all" href="/leaderboard">
+<a class="gamification--view-all" href='{{theme-i18n "gamification.view_all_link"}}'>
   {{theme-i18n "gamification.view_all_tag"}} {{d-icon "angle-right"}}
 </a>
 
@@ -22,6 +22,6 @@
   {{/each}}
 </div>
 
-<a href="{{gamification.view_all_badges_tag}}" class="gamification--view-badges">
+<a href='{{theme-i18n "gamification.view_all_badges_tag"}}' class="gamification--view-badges">
   {{theme-i18n "gamification.view_all_badges"}}
 </a>
