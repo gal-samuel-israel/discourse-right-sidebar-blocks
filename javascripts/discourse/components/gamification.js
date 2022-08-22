@@ -5,7 +5,7 @@ import { action } from "@ember/object";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 
 export default class Gamification extends Component {
-  @tracked gamificationList = null;
+  @tracked gamificatinObj = null;
 
   constructor() {
     super(...arguments);
@@ -14,14 +14,31 @@ export default class Gamification extends Component {
 
     ajax(`/leaderboard`)
     .then((scores) => {
-        this.gamificationList = scores;
-        this.gamificationList.users = scores.users.slice(0, count);
+        this.gamificatinObj = scores;
+        this.gamificatinObj.users = scores.users.slice(0, count);
         console.log(scores);
       }
     );
   }
 
+  @action
+  changePeriod(period) {
+    this.set("period", period);
+    return ajax(
+      `/leaderboard/${this.gamificatinObj.leaderboard.id}?period=${this.period}`
+    )
+      .then((result) => {
+        if (result.users.length === 0) {
+          this.set("canLoadMore", false);
+        }
+        this.set("page", 1);        
+        this.set("gamificatinObj.users",result.users.slice(0, count));
+      })
+      .finally(() => this.set("loading", false))
+      .catch(popupAjaxError);
+  }
+
   willDestroy() {
-    this.gamificationList = null;
+    this.gamificatinObj = null;
   }
 };
