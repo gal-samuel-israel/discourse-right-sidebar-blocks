@@ -27,7 +27,7 @@ export default class Gamification extends Component {
 
   @action
   changePeriod(period) {
-    super(...arguments);
+    this.super(...arguments);
     this.period = period;
     const count = this.args?.params?.count || 5;
 
