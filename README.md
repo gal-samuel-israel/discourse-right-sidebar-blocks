@@ -15,6 +15,7 @@ This theme component includes a few blocks you can use in your sidebar:
 - category-topics
 - custom-html
 - subcategory-list
+- gamification
 
 You can also use other Ember components as blocks, you just need to use the correct name. For example, core includes a `signup-cta` Ember component, and you can use it in the sidebar as is. (Note that you can't use components that expect a set of parameters.)
 
@@ -24,7 +25,7 @@ You can control some features for the provided blocks via parameters.
 
 | name                | description                                                                                                                       | default | available for                                                            |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------ |
-| count               | limits number of results                                                                                                          | varies  | popular-tags<br/>category-topics<br/>recent-replies<br/>top-contributors |
+| count               | limits number of results                                                                                                          | varies  | popular-tags<br/>category-topics<br/>recent-replies<br/>top-contributors<br/>gamification |
 | excerptLimit        | limits length of each reply excerpt                                                                                               | 150     | recent-replies                                                           |
 | id                  | category id                                                                                                                       |         | category-topics                                                          |
 | displayInCategories | comma-separated list of parent category ids (when omitted, the block will be displayed in all  categories with subcategories) |         | subcategory-list                                                         |
