@@ -26,8 +26,7 @@ export default class Gamification extends Component {
   }
 
   @action
-  changePeriod(period) {
-    this.super(...arguments);
+  changePeriod(period) {    
     this.period = period;
     const count = this.args?.params?.count || 5;
 
@@ -38,8 +37,8 @@ export default class Gamification extends Component {
         if (result.users.length === 0) {
           this.canLoadMore = false;
         }
-        this.page= 1;
-        this.gamificatinObj.users = result.users.slice(0, count);
+        this.set(page,1);
+        this.set(gamificatinObj.users, result.users.slice(0, count));
       })
       .finally(() => this.loading = false)
       .catch(popupAjaxError);
