@@ -29,3 +29,5 @@ You can control some features for the provided blocks via parameters.
 | excerptLimit        | limits length of each reply excerpt                                                                                               | 150     | recent-replies                                                           |
 | id                  | category id                                                                                                                       |         | category-topics                                                          |
 | displayInCategories | comma-separated list of parent category ids (when omitted, the block will be displayed in all  categories with subcategories) |         | subcategory-list                                                         |
+| content             | for the content                                  |
+custom-html
