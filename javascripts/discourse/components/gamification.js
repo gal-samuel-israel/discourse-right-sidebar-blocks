@@ -12,7 +12,7 @@ export default class Gamification extends Component {
 
     ajax(`/leaderboard`)
     .then((scores) => {
-        this.gamificationList = scores;
+        this.gamificationList = scores.slice(0, count);
         console.log(scores);
       }
     );
