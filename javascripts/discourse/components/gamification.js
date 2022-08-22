@@ -1,8 +1,17 @@
 import Component from "@glimmer/component";
 import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
+import LoadMore from "discourse/mixins/load-more";
+import { action } from "@ember/object";
+import { popupAjaxError } from "discourse/lib/ajax-error";
 
-export default class Gamification extends Component {
+export default class Gamification extends Component.extend(LoadMore, {
+
+  page: 1,
+  loading: false,
+  canLoadMore: true,
+  period: "all",
+
   @tracked gamificationList = null;
 
   constructor() {
@@ -19,7 +28,24 @@ export default class Gamification extends Component {
     );
   }
 
+  @action
+  changePeriod(period) {
+    this.set("period", period);
+    return ajax(
+      `/leaderboard/${this.model.leaderboard.id}?period=${this.period}`
+    )
+      .then((result) => {
+        if (result.users.length === 0) {
+          this.set("canLoadMore", false);
+        }
+        this.set("page", 1);        
+        this.set("gamificationList.users",result.users.slice(0, count));
+      })
+      .finally(() => this.set("loading", false))
+      .catch(popupAjaxError);
+  }
+
   willDestroy() {
     this.gamificationList = null;
   }
-}
+});
