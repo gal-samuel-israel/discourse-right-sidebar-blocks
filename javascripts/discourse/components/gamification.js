@@ -1,11 +1,10 @@
 import Component from "@glimmer/component";
 import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
-import LoadMore from "discourse/mixins/load-more";
 import { action } from "@ember/object";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 
-export default class Gamification extends Component.extend(LoadMore, {
+export default class Gamification extends Component {
 
   @tracked page: 1;
   @tracked loading: false;
@@ -47,4 +46,4 @@ export default class Gamification extends Component.extend(LoadMore, {
   willDestroy() {
     this.gamificationList = null;
   }
-});
+};

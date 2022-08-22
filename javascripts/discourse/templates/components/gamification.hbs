@@ -2,7 +2,7 @@
   {{theme-i18n "gamification.heading"}}
 </h3>
 
-<PeriodChooser @period={{this.period}} @action={{action "changePeriod"}} @fullDay={{false}} class="gamification--period-chooser"/>
+<PeriodChooser @period={{period}} @action={{action "changePeriod"}} @fullDay={{false}} class="gamification--period-chooser"/>
 
 <div class="gamification--container">
   {{#each gamificationList.users as |item|}}
