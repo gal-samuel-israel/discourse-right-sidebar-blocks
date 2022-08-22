@@ -10,12 +10,24 @@
         {{html-safe item.username}}
       </span>
       <span class="gamification--user-score">
-        <!-- {{d-icon "heart"}}--> {{item.total_score}}
+         {{#switch {{@index}} }} 
+            {{#case 0}} 
+                <span class"lb-gold">{{d-icon "crown"}}</span>
+            {{/case}}
+            {{#case 1}} 
+                <span class"lb-silver">{{d-icon "crown"}}</span>
+            {{/case}}
+            {{#case 2}} 
+                <span class"lb-bronze">{{d-icon "crown"}}</span>
+            {{/case}}
+            {{#default}}<span class"lb-x"></span>{{/default}}
+        {{/switch}}
+        {{item.total_score}}
       </span>
     </div>
   {{/each}}
 </div>
 
-<a class="gamification--view-all" href={{gamification.view_all_link}}>
+<a class="gamification--view-all" href="/leaderboard">
   {{theme-i18n "gamification.view_all_tag"}}
 </a>
