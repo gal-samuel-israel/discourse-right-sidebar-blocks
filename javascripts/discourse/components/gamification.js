@@ -5,6 +5,9 @@ import { action } from "@ember/object";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 
 export default class Gamification extends Component {
+  @tracked page = 1;
+  @tracked loading = false;
+  @tracked canLoadMore=true;
   @tracked gamificatinObj = null;
 
   constructor() {
@@ -29,12 +32,12 @@ export default class Gamification extends Component {
     )
       .then((result) => {
         if (result.users.length === 0) {
-          this.set("canLoadMore", false);
+          this.canLoadMore = false;
         }
-        this.set("page", 1);        
-        this.set("gamificatinObj.users",result.users.slice(0, count));
+        this.page= 1;
+        this.gamificatinObj.users = result.users.slice(0, count);
       })
-      .finally(() => this.set("loading", false))
+      .finally(() => this.loading = false)
       .catch(popupAjaxError);
   }
 
