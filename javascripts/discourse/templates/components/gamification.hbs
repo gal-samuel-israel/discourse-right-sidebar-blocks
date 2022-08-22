@@ -1,0 +1,21 @@
+<h3 class="gamification-heading">
+  {{theme-i18n "gamification.heading"}}
+</h3>
+
+<div class="gamification--container">
+  {{#each gamificationList as |item|}}
+    <div class="gamification--user">
+      <span data-user-card={{item.user.username}} class="gamification--user-badge">
+        {{avatar item.user imageSize="small"}}
+        {{html-safe item.user.username}}
+      </span>
+      <span class="gamification--user-score">
+        {{d-icon "heart"}} {{item.likes_received}}
+      </span>
+    </div>
+  {{/each}}
+</div>
+
+<a class="gamification--view-all" href="{{gamification.view_all_link}}">
+  {{theme-i18n "gamification.view_all_tag"}}
+</a>

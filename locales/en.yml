@@ -8,3 +8,7 @@ en:
     heading: "Recent replies"
   subcategory_list:
     heading: "Subcategories"
+  gamification:
+    heading: "Global Leaderboard"
+    view_all_tag: "View all"
+    view_all_link: "/leaderboard"
