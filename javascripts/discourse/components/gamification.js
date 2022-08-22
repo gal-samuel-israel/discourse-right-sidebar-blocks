@@ -28,6 +28,9 @@ export default class Gamification extends Component {
   @action
   changePeriod(period) {
     this.period = period;
+
+    const count = this.args?.params?.count || 5;
+    
     return ajax(
       `/leaderboard/${this.gamificatinObj.leaderboard.id}?period=${this.period}`
     )
