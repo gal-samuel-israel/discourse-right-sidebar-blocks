@@ -5,7 +5,7 @@
 <PeriodChooser @period={{period}} @action={{action "changePeriod"}} @fullDay={{false}} class="gamification--period-chooser"/>
 
 <div class="gamification--container">
-  {{#each gamificationList.users as |item|}}
+  {{#each gamificatinObj.users as |item|}}
     <div class="gamification--user">
       <span data-user-card={{item.username}} class="gamification--user-badge">
         {{avatar item imageSize="small"}}
