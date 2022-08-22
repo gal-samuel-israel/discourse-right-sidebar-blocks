@@ -7,11 +7,10 @@ import { popupAjaxError } from "discourse/lib/ajax-error";
 
 export default class Gamification extends Component.extend(LoadMore, {
 
-  page: 1,
-  loading: false,
-  canLoadMore: true,
-  period: "all",
-
+  @tracked page: 1;
+  @tracked loading: false;
+  @tracked canLoadMore: true;
+  @tracked period: "all";
   @tracked gamificationList = null;
 
   constructor() {
