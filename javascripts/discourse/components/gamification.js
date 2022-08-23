@@ -13,8 +13,11 @@ export default class Gamification extends Component {
 
   constructor() {
     super(...arguments);
+    console.log(arguments);
 
     const count = this.args?.params?.count || 5;
+
+    //const showLeadersLink = gamification.view_all_link !=='' ? false:true;
 
     ajax(`/leaderboard`)
     .then((scores) => {
