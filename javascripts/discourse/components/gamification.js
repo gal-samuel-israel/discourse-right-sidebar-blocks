@@ -12,8 +12,7 @@ export default class Gamification extends Component {
   @tracked period = "all";
 
   constructor() {
-    super(...arguments);
-    console.log(arguments);
+    super(...arguments);    
 
     const count = this.args?.params?.count || 5;
 
@@ -26,6 +25,8 @@ export default class Gamification extends Component {
         //console.log(scores);
       }
     );
+
+    console.log(this);
   }
 
   @action
