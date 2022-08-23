@@ -4,10 +4,6 @@
 
 <!-- <PeriodChooser @period={{period}} @action={{action "changePeriod"}} @fullDay={{false}} class="gamification-period-chooser"/> -->
 
-<a class="gamification--view-all" href='{{theme-i18n "gamification.view_all_link"}}'>
-  {{theme-i18n "gamification.view_all_tag"}} {{d-icon "angle-right"}}
-</a>
-
 <div class="gamification--container">
   {{#each gamificatinObj.users as |item|}}
     <div class="gamification--user">
@@ -22,6 +18,13 @@
   {{/each}}
 </div>
 
+{{#if gamification.view_all_link}}
+<a href='{{theme-i18n "gamification.view_all_link"}}' class="gamification--view-all" >
+  {{theme-i18n "gamification.view_all_tag"}} {{d-icon "angle-right"}}
+</a>
+{{/if}}
+{{#if gamification.view_all_badges_link}}
 <a href='{{theme-i18n "gamification.view_all_badges_link"}}' class="gamification--view-badges">
   {{theme-i18n "gamification.view_all_badges_tag"}}
 </a>
+{{/if}}
