@@ -26,7 +26,7 @@ export default class Gamification extends Component {
       }
     );
 
-    console.log(this.params);
+    console.log(this.args);
   }
 
   @action
