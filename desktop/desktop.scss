@@ -88,6 +88,8 @@
 .gamification--view-badges:hover,
 .gamification--view-all:hover {color: var(--primary); text-decoration: underline;}
 
+.rs-gamification a.hide-link { display: none;}
+
 // Recent replies
 .recent-replies--reply {
   border-bottom: 1px solid var(--primary-low);
