@@ -18,7 +18,7 @@
   {{/each}}
 </div>
 
-{{#if gamification.view_all_link}}
+{{#if gamification.view_all_link includeZero=true}}
 <a href='{{theme-i18n "gamification.view_all_link"}}' class="gamification--view-all" >
   {{theme-i18n "gamification.view_all_tag"}} {{d-icon "angle-right"}}
 </a>
