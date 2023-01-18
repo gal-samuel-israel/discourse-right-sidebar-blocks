@@ -26,7 +26,7 @@ export default class Gamification extends Component {
     );
 
     registerHelper('partial-string', function (aString) {
-      console.log(aString);
+      console.log(aString); //html-safe
       return aString.toUpperCase();
     });
 

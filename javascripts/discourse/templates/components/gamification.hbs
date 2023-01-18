@@ -9,7 +9,7 @@
     <div class="gamification--user">
       <span data-user-card={{item.username}} class="gamification--user-badge">
         {{avatar item imageSize="small"}}
-        {{html-safe partial-string item.username}}
+        {{partial-string item.username}}
       </span>
       <span class="gamification--user-score">
         {{d-icon "crown"}} {{item.total_score}}
