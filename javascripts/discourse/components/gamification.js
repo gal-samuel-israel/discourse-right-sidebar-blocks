@@ -24,6 +24,11 @@ export default class Gamification extends Component {
       }
     );
 
+    this.registerHelper('partial_string', function (aString) {
+      //html-safe
+      return aString.toUpperCase()
+    })
+
   }
 
   @action
