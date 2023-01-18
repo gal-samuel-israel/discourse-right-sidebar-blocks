@@ -3,6 +3,7 @@ import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { popupAjaxError } from "discourse/lib/ajax-error";
+import { registerHelper } from "discourse-common/lib/helpers";
 
 export default class Gamification extends Component {
   @tracked page = 1;
@@ -24,7 +25,7 @@ export default class Gamification extends Component {
       }
     );
 
-    this.registerHelper('partial-string', function (aString) {
+    registerHelper('partial-string', function (aString) {
       //html-safe
       return aString.toUpperCase()
     })
