@@ -3,7 +3,6 @@ import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { popupAjaxError } from "discourse/lib/ajax-error";
-import { registerHelper } from "discourse-common/lib/helpers";
 
 export default class Gamification extends Component {
   @tracked page = 1;
@@ -24,12 +23,6 @@ export default class Gamification extends Component {
         //console.log(scores);
       }
     );
-
-    registerHelper('limit-length', function (aString) {
-      console.log(aString); //html-safe
-      return aString.toUpperCase();
-    });
-
   }
 
   @action
