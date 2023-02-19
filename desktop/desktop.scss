@@ -147,3 +147,24 @@
     margin-right: auto;
   }
 }
+
+// control bar
+.gamification-controls-wrap {
+  margin-bottom:0.5em;
+
+  a.gamification-control {
+    font-size:0.8rem;
+    background:gray; 
+    color: white;
+    padding:0.1em 0.7em;
+    line-height:1rem;
+    display:inline-block;
+    border-radius:1em; 
+  }
+  a.gamification-control:hover{
+    background:yellowgreen
+  }
+  .gamification-control.active{
+    background:#004f89; 
+  }
+}

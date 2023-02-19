@@ -68,13 +68,13 @@ export default class Gamification extends Component {
   @action
   scoreForWeek(event){
     event?.preventDefault();
-    console.log('week');
+    if(this.debug){ console.log('week'); }
   }
 
   @action
   scoreForAll(event){
     event?.preventDefault();
-    console.log('All');
+    if(this.debug){ console.log('All'); }
   }
 
   willDestroy() {
