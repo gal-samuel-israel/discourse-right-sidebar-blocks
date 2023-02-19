@@ -10,6 +10,8 @@ export default class Gamification extends Component {
   @tracked canLoadMore = true;
   @tracked gamificatinObj = null;
   @tracked period = "weekly";
+  @tracked activeWeekly = true;
+  @tracked activeAll = false;
 
   debug = false;
   showOnlyToAdmins = false;
@@ -33,7 +35,7 @@ export default class Gamification extends Component {
     if(this.debug4All){ this.debug = true; }
     if(this.debug){ console.log('component gamification constructor:'); }    
 
-    ajax(`/leaderboard`)
+    ajax(`/leaderboard/?period=${this.period}`)
     .then((scores) => {
         this.gamificatinObj = scores;
         this.gamificatinObj.users = scores.users.slice(0, this.maxUsersToShow);
@@ -42,9 +44,6 @@ export default class Gamification extends Component {
     );
   }
 
-  isActive(string){
-    return (string===this.period) ? 'active':'';
-  }
   _changePeriod(period) {    
     this.period = period;
     if(this.debug){ console.log('changePeriod:' + period);  }
@@ -68,17 +67,15 @@ export default class Gamification extends Component {
   @action
   scoreForWeek(event){
     event?.preventDefault();
-    if(this.debug){       
-      this._changePeriod('weekly');
-    }
+    this.activeWeekly = true; this.activeAll = false;  
+    this._changePeriod('weekly');    
   }
 
   @action
   scoreForAll(event){
     event?.preventDefault();
-    if(this.debug){ 
-      this._changePeriod('all');
-    }
+    this.activeWeekly = false; this.activeAll = true;
+    this._changePeriod('all');    
   }
 
   willDestroy() {
