@@ -9,7 +9,7 @@ export default class Gamification extends Component {
   @tracked loading = false;
   @tracked canLoadMore = true;
   @tracked gamificatinObj = null;
-  @tracked period = "all";
+  @tracked period = "weekly";
 
   debug = false;
   showOnlyToAdmins = false;
@@ -42,6 +42,9 @@ export default class Gamification extends Component {
     );
   }
 
+  isActive(string){
+    return (string===this.period) ? 'active':'';
+  }
   _changePeriod(period) {    
     this.period = period;
     if(this.debug){ console.log('changePeriod:' + period);  }
