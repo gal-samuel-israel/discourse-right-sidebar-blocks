@@ -45,12 +45,14 @@ export default class Gamification extends Component {
   }
 
   @action
-  scoreForWeek(){
+  scoreForWeek(event){
+    event?.preventDefault();
     console.log('week');
   }
 
   @action
-  scoreForAll(){
+  scoreForAll(event){
+    event?.preventDefault();
     console.log('All');
   }
 
