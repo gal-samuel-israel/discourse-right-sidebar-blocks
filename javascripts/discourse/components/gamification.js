@@ -22,13 +22,9 @@ export default class Gamification extends Component {
     this.showOnlyToAdmins = settings?.enable_component_only_for_admins; //from settings.yml
     this.debugForAdmins = settings?.enable_debug_for_admins; //from settings.yml
     this.debug4All = settings?.enable_debug_for_all; //from settings.yml    
-
     this.debugForUsers = settings?.enable_debug_for_user_ids; //from settings.yml
-    var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null;
-    
+    var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null;    
     this.debug = false;
-    
-    //Discourse.User.currentProp('admin')
     
     if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
     if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
@@ -46,8 +42,7 @@ export default class Gamification extends Component {
     );
   }
 
- @action
- changePeriod(period) {    
+  _changePeriod(period) {    
     this.period = period;
     const count = this.args?.params?.count || 5;
     if(this.debug){ console.log('changePeriod:' + period);  }
@@ -70,7 +65,7 @@ export default class Gamification extends Component {
   scoreForWeek(event){
     event?.preventDefault();
     if(this.debug){       
-      changePeriod('weekly');
+      this._changePeriod('weekly');
     }
   }
 
@@ -78,7 +73,7 @@ export default class Gamification extends Component {
   scoreForAll(event){
     event?.preventDefault();
     if(this.debug){ 
-      changePeriod('all');
+      this._changePeriod('all');
     }
   }
 
