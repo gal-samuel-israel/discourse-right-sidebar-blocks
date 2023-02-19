@@ -16,6 +16,8 @@ export default class Gamification extends Component {
   debug4All = false;
   debugForUsers = false;
 
+  maxUsersToShow = 5;
+
   constructor() {
     super(...arguments);    
 
@@ -29,14 +31,12 @@ export default class Gamification extends Component {
     if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
     if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
     if(this.debug4All){ this.debug = true; }
-    if(this.debug){ console.log('component gamification constructor:'); }
-    
-    const count = this.args?.params?.count || 5;
+    if(this.debug){ console.log('component gamification constructor:'); }    
 
     ajax(`/leaderboard`)
     .then((scores) => {
-        this.gamificatinObj = scores;
-        this.gamificatinObj.users = scores.users.slice(0, count);
+        this.set(gamificatinObj, scores);
+        this.set(gamificatinObj.users, scores.users.slice(0, this.maxUsersToShow));
         //console.log(scores);
       }
     );
@@ -44,7 +44,6 @@ export default class Gamification extends Component {
 
   _changePeriod(period) {    
     this.period = period;
-    const count = this.args?.params?.count || 5;
     if(this.debug){ console.log('changePeriod:' + period);  }
 
     return ajax(
@@ -55,7 +54,7 @@ export default class Gamification extends Component {
           this.canLoadMore = false;
         }
         this.page = 1;
-        this.gamificatinObj.users = result.users.slice(0, count);
+        this.gamificatinObj.users = result.users.slice(0, this.maxUsersToShow);
       })
       .finally(() => this.loading = false)
       .catch(popupAjaxError);
