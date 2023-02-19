@@ -64,6 +64,10 @@ export default class Gamification extends Component {
       .catch(popupAjaxError);
   }
 
+  getActiveClass(string){
+    return (string===this.period)?'active':'';
+  }
+
   @action
   scoreForWeek(event){
     event?.preventDefault();

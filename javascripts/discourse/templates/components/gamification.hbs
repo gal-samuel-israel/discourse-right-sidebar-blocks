@@ -5,8 +5,8 @@
 <!-- <PeriodChooser @period={{period}} @action={{action "changePeriod"}} @fullDay={{false}} class="gamification-period-chooser"/> -->
 
 <div class="gamification-controls-wrap">
-  <a href {{on "click" this.scoreForWeek}} class="gamification-control {{#if activeWeekly}}active{{/if}}">Week</a>
-  <a href {{on "click" this.scoreForAll}} class="gamification-control {{#if activeAll}}active{{/if}}">All time</a>
+  <a href {{on "click" this.scoreForWeek}} class="gamification-control {{this.getActiveClass "weekly"}}">Week</a>
+  <a href {{on "click" this.scoreForAll}} class="gamification-control {{this.getActiveClass "all"}}">All time</a>
 </div>
 
 <div class="gamification--container">
