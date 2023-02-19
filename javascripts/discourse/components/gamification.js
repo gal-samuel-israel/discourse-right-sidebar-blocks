@@ -46,7 +46,6 @@ export default class Gamification extends Component {
     );
   }
 
-  @action
   changePeriod(period) {    
     this.period = period;
     const count = this.args?.params?.count || 5;
@@ -68,13 +67,19 @@ export default class Gamification extends Component {
   @action
   scoreForWeek(event){
     event?.preventDefault();
-    if(this.debug){ console.log('week'); }
+    if(this.debug){ 
+      console.log('weekly'); 
+      changePeriod('weekly');
+    }
   }
 
   @action
   scoreForAll(event){
     event?.preventDefault();
-    if(this.debug){ console.log('All'); }
+    if(this.debug){ 
+      console.log('all'); 
+      changePeriod('all');
+    }
   }
 
   willDestroy() {
