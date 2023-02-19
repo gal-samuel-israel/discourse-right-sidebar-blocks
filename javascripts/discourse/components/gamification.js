@@ -55,6 +55,7 @@ export default class Gamification extends Component {
           this.canLoadMore = false;
         }
         this.page = 1;
+        this.gamificatinObj = result;
         this.gamificatinObj.users = result.users.slice(0, this.maxUsersToShow);
       })
       .finally(() => this.loading = false)
