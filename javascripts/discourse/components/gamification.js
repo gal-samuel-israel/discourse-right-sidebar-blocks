@@ -27,7 +27,7 @@ export default class Gamification extends Component {
     var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null;
     
     this.debug = false;
-    if(this.currentUser.admin && this.debugForAdmins){ this.debug = true; }
+    //if(this.currentUser.admin && this.debugForAdmins){ this.debug = true; }
     if(debugForIDs && debugForIDs.includes(this.currentUser.id.toString())) { this.debug = true; }
     if(this.debug4All){ this.debug = true; }
 
