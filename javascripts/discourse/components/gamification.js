@@ -44,6 +44,16 @@ export default class Gamification extends Component {
       .catch(popupAjaxError);
   }
 
+  @action
+  scoreForWeek(){
+    console.log('week');
+  }
+
+  @action
+  scoreForAll(){
+    console.log('All');
+  }
+
   willDestroy() {
     this.gamificatinObj = null;
   }
