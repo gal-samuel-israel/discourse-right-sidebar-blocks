@@ -11,8 +11,27 @@ export default class Gamification extends Component {
   @tracked gamificatinObj = null;
   @tracked period = "all";
 
+  debug = false;
+  showOnlyToAdmins = false;
+  debug4All = false;
+  debugForUsers = false;
+
   constructor() {
     super(...arguments);    
+
+    this.showOnlyToAdmins = settings?.enable_component_only_for_admins; //from settings.yml
+    this.debugForAdmins = settings?.enable_debug_for_admins; //from settings.yml
+    this.debug4All = settings?.enable_debug_for_all; //from settings.yml    
+
+    this.debugForUsers = settings?.enable_debug_for_user_ids; //from settings.yml
+    var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null;
+    
+    this.debug = false;
+    if(this.currentUser.admin && this.debugForAdmins){ this.debug = true; }
+    if(debugForIDs && debugForIDs.includes(this.currentUser.id.toString())) { this.debug = true; }
+    if(this.debug4All){ this.debug = true; }
+
+    if(this.debug){ console.log('component gamification constructor:'); }
 
     const count = this.args?.params?.count || 5;
 
