@@ -35,8 +35,8 @@ export default class Gamification extends Component {
 
     ajax(`/leaderboard`)
     .then((scores) => {
-        this.set(gamificatinObj, scores);
-        this.set(gamificatinObj.users, scores.users.slice(0, this.maxUsersToShow));
+        this.gamificatinObj = scores;
+        this.gamificatinObj.users = scores.users.slice(0, this.maxUsersToShow);
         //console.log(scores);
       }
     );
@@ -50,6 +50,7 @@ export default class Gamification extends Component {
       `/leaderboard/${this.gamificatinObj.leaderboard.id}?period=${this.period}`
     )
       .then((result) => {
+        if(this.debug){ console.log(result);  }
         if (result.users.length === 0) {
           this.canLoadMore = false;
         }
