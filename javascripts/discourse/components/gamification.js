@@ -27,11 +27,14 @@ export default class Gamification extends Component {
     var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null;
     
     this.debug = false;
-    //if(this.currentUser.admin && this.debugForAdmins){ this.debug = true; }
+    console.log(this.currentUser);
+    console.log(Discourse.User); //Discourse.User.currentProp
+    /*
+    if(this.currentUser.admin && this.debugForAdmins){ this.debug = true; }
     if(debugForIDs && debugForIDs.includes(this.currentUser.id.toString())) { this.debug = true; }
     if(this.debug4All){ this.debug = true; }
-
     if(this.debug){ console.log('component gamification constructor:'); }
+    */
 
     const count = this.args?.params?.count || 5;
 
