@@ -13,9 +13,9 @@
   {{#if loading}}
     <div class="gamification-loader">Loading</div>
   {{else}}
-    {{#each gamificatinObj.users as |key item|}}
+    {{#each gamificatinObj.users as |item|}}
       <div class="gamification--user">
-        <span class="gamification--user-index">{{key}}</span>
+        <span class="gamification--user-index">{{@key}}</span>
         <span data-user-card={{item.username}} class="gamification--user-card">
           {{avatar item imageSize="small"}}
           <span class="limit-username-length" title={{html-safe item.username}}>{{html-safe item.username}}</span>
