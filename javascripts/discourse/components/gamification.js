@@ -23,7 +23,7 @@ export default class Gamification extends Component {
   debug4All = false;
   debugForUsers = false;
 
-  maxUsersToShow = 5;
+  maxUsersToShow = 8;
 
   constructor() {
     super(...arguments);    
