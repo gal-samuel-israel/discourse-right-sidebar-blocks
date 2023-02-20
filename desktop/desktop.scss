@@ -102,6 +102,7 @@ a.gamification--view-all.show-link { color: var(--primary); font-weight: normal;
 .rs-gamification a.hide-link { display: none;}
 
 //badges
+.gamification--container .gamification--user svg {vertical-align:middle;}
 .gamification--container .gamification--user:nth-of-type(1) svg path{fill: gold;}
 .gamification--container .gamification--user:nth-of-type(2) svg path{fill: silver;}
 .gamification--container .gamification--user:nth-of-type(3) svg path{fill: #cd7f32;}
