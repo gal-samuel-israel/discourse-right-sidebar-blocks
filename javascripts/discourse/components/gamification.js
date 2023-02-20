@@ -49,7 +49,11 @@ export default class Gamification extends Component {
     );
 
     if(this.debug){
-      ajax(`/admin/plugins/explorer/queries/11/run?user_id=2`)
+      ajax(`/admin/plugins/explorer/queries/11/run`,{
+        type: "POST",
+        data: {
+          user_id: 2
+        }})
       .then((response) => {        
         console.log(response);
       });
