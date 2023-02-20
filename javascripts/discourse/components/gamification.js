@@ -23,7 +23,7 @@ export default class Gamification extends Component {
   debug4All = false;
   debugForUsers = false;
 
-  maxUsersToShow = 8;
+  maxUsersToShow = 8; //update teh CSS for the badge hiding if above 10
 
   constructor() {
     super(...arguments);    
