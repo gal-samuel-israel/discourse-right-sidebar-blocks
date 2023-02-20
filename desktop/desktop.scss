@@ -101,6 +101,13 @@ a.gamification--view-all.show-link { color: var(--primary); font-weight: normal;
 
 .rs-gamification a.hide-link { display: none;}
 
+//badges
+.gamification--container .gamification--user:nth-of-type(1) svg path{fill: gold;}
+.gamification--container .gamification--user:nth-of-type(2) svg path{fill: silver;}
+.gamification--container .gamification--user:nth-of-type(3) svg path{fill: #cd7f32;}
+.gamification--container .gamification--user:nth-of-type(4) svg {display:none;}
+.gamification--container .gamification--user:nth-of-type(5) svg {display:none;}
+
 // Recent replies
 .recent-replies--reply {
   border-bottom: 1px solid var(--primary-low);
