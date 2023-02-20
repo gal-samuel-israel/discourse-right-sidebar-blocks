@@ -3,6 +3,11 @@ import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { popupAjaxError } from "discourse/lib/ajax-error";
+import RawHandlebars from "discourse-common/lib/raw-handlebars";
+
+RawHandlebars.registerHelper("inc", function(value, options) {
+    return parseInt(value) + 1;
+});
 
 export default class Gamification extends Component {
   @tracked page = 1;
