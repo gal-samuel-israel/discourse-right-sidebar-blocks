@@ -15,7 +15,7 @@
   {{else}}
     {{#each gamificatinObj.users as |item|}}
       <div class="gamification--user">
-        <span class="gamification--user-index">{{@index}}</span>
+        <span class="gamification--user-index">{{item.index}}</span>
         <span data-user-card={{item.username}} class="gamification--user-card">
           {{avatar item imageSize="small"}}
           <span class="limit-username-length" title={{html-safe item.username}}>{{html-safe item.username}}</span>
