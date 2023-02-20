@@ -47,6 +47,14 @@ export default class Gamification extends Component {
         //console.log(scores);
       }
     );
+
+    if(this.debug){
+      ajax(`/admin/plugins/explorer/queries/11/?user_id=2`)
+      .then((response) => {        
+        console.log(response);
+      });
+    }
+
   }
 
   _changePeriod(period) {    
