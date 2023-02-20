@@ -56,11 +56,14 @@
 .gamification--user {
   margin-bottom: 0.5em;
   display: grid;
-  grid-template-columns: auto;
-  grid-template-areas: "left right";
-  grid-column-gap: 0.2em;
+  grid-template-columns: max-content;
+  grid-template-areas: "index left right";
+  grid-column-gap: 0.4em;
   cursor: pointer;
 }
+span.gamification--user-index { grid-column: 1; grid-area: index; color: silver; }
+span.gamification--user-card { grid-column: 1; justify-self: left; grid-area: left; }
+span.gamification--user-score { grid-area: right; justify-self: end; }
 
 .gamification--user-badge {
   grid-area: left;
@@ -72,11 +75,6 @@
     max-width: 19ch;
     vertical-align: middle;
   }
-}
-
-.gamification--user-score {
-  grid-area: right;
-  justify-self: end;
 }
 
 .gamification--user:nth-child(1) .svg-icon { 
