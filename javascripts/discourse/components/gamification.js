@@ -34,8 +34,7 @@ export default class Gamification extends Component {
     return info;
   }
 
-  getUserAlgoBadge(user_id){
-    var info = {};
+  getUserAlgoBadge(user_id){    
     ajax(`/admin/plugins/explorer/queries/11/run`, {
       type: "POST",
       headers: { "Api-Username": "system", "Api-Key": "d0082b555db3459e85fee2d29b29b79edc689d8767a80fef33761ef16869d83c" }, //Data Explorer Ready Only - query 11
@@ -43,11 +42,8 @@ export default class Gamification extends Component {
     })
     .then((response) => {        
       //console.log(response);
-      info = this.objectifyResponse(response);    
-    }).finally(() => {
-      return info;
-    })
-    .catch(() => { });  
+      return this.objectifyResponse(response);    
+    });
   }
 
   constructor() {
