@@ -18,6 +18,7 @@ function objectifyResponse(response){
 };
 
 function getUserAlgoBadge(user_id){
+  var info = {};
   ajax(`/admin/plugins/explorer/queries/11/run`,{
     type: "POST",
     headers: { "Api-Username": "system", "Api-Key": "d0082b555db3459e85fee2d29b29b79edc689d8767a80fef33761ef16869d83c" }, //Data Explorer Ready Only - query 11
@@ -25,9 +26,11 @@ function getUserAlgoBadge(user_id){
   })
   .then((response) => {        
     //console.log(response);
-    return objectifyResponse(response);    
-  }).finally(() => {})
-  .catch(() => {});
+    info = objectifyResponse(response);    
+  }).finally(() => {
+    return info;
+  })
+  .catch(() => { });  
 }
 
 export default class Gamification extends Component {
