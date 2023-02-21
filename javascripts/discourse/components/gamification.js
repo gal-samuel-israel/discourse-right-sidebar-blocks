@@ -32,7 +32,7 @@ export default class Gamification extends Component {
     let values = response.rows[0];
     for(var i = 0; i < keys.length; i++){ info[keys[i]] = values[i]; }
     return info;
-};
+  }
 
   getUserAlgoBadge(user_id){
     var info = {};
