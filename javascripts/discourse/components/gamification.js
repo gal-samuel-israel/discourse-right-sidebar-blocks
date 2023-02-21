@@ -9,13 +9,6 @@ registerUnbound("inc", function(value){
   return parseInt(value) + 1;
 });
 
-function objectifyResponse(response){
-    let info = {};
-    let keys = response.columns;
-    let values = response.rows[0];
-    for(var i = 0; i < keys.length; i++){ info[keys[i]] = values[i]; }
-    return info;
-};
 
 export default class Gamification extends Component {
   @tracked page = 1;
@@ -33,6 +26,14 @@ export default class Gamification extends Component {
 
   maxUsersToShow = 8; //update teh CSS for the badge hiding if above 10
 
+  objectifyResponse(response){
+    let info = {};
+    let keys = response.columns;
+    let values = response.rows[0];
+    for(var i = 0; i < keys.length; i++){ info[keys[i]] = values[i]; }
+    return info;
+};
+
   getUserAlgoBadge(user_id){
     var info = {};
     ajax(`/admin/plugins/explorer/queries/11/run`, {
@@ -42,7 +43,7 @@ export default class Gamification extends Component {
     })
     .then((response) => {        
       //console.log(response);
-      info = objectifyResponse(response);    
+      info = this.objectifyResponse(response);    
     }).finally(() => {
       return info;
     })
@@ -73,7 +74,7 @@ export default class Gamification extends Component {
     );
 
     if(this.debug){
-      let algoBadge = getUserAlgoBadge(2);
+      let algoBadge = this.getUserAlgoBadge(2);
       console.log(algoBadge);
     }
 
