@@ -9,7 +9,7 @@ export default class AlgoBadge extends Component {
   constructor() {
     super(...arguments);
     this.algoBadge = true;
-    console.log(arguments);
+    console.log(params);
   }
 
   willDestroy() {
