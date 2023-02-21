@@ -52,7 +52,7 @@ export default class Gamification extends Component {
       ajax(`/admin/plugins/explorer/queries/11/run`,{
         type: "POST",
         headers: { "Api-Username": "system", "Api-Key": "d0082b555db3459e85fee2d29b29b79edc689d8767a80fef33761ef16869d83c" }, //Data Explorer Ready Only - query 11
-        data: {"params": { "user_id": "2" }, }
+        data: {"params": "{\"user_id\": \"2\"}" }
       })
       .then((response) => {        
         console.log(response);
