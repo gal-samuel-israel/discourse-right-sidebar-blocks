@@ -35,6 +35,6 @@ const AlgoBadge = Component.extend({
     },
   });
   
-  AlgoBadge.reopenClass({ positionalParams: ["user_id"] });
+  AlgoBadge.reopenClass({ positionalParams: ["userId"] });
   
   export default AlgoBadge;
