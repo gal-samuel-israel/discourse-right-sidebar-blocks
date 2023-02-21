@@ -56,6 +56,16 @@ export default class Gamification extends Component {
       })
       .then((response) => {        
         console.log(response);
+        let info = {};
+        let keys = response.columns;
+        let values = response.rows[0];
+        for(var i = 0; i < keys.length; i++){
+          // obj = Object
+          // keys = key array
+          // values = value array
+          info[keys[i]] = values[i];
+        }
+        console.log(info);
       }).finally(() => this.loading = false)
       .catch(popupAjaxError);
     }
