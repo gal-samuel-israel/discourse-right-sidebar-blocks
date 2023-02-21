@@ -1,7 +1,6 @@
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { inject as service } from "@ember/service";
 
+/*
 export default class AlgoBadge extends Component {
   @service site;
   @tracked algoBadge = null;
@@ -16,3 +15,26 @@ export default class AlgoBadge extends Component {
     this.algoBadge = null;
   }
 }
+*/
+
+const AlgoBadge = Component.extend({    
+    algoBadge: null,
+
+    didReceiveAttrs() {
+        this._super(...arguments);
+        console.log('didReceiveAttrs', arguments)
+    },
+  
+    didRender() {
+        this._super(...arguments);
+        console.log('didRender', arguments)
+    },
+
+    willDestroy() {
+        this.algoBadge = null;
+    },
+  });
+  
+  AlgoBadge.reopenClass({ positionalParams: ["user_id"] });
+  
+  export default AlgoBadge;
