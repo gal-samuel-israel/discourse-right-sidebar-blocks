@@ -32,6 +32,7 @@ export default class Gamification extends Component {
     var keys = response.columns;
     var values = response.rows[0];
     for(var i = 0; i < keys.length; i++){ info[keys[i]] = values[i]; }
+    if(this.debug){console.log('ret: ',info);} 
     return info;
   }
 
@@ -72,7 +73,7 @@ export default class Gamification extends Component {
     );
 
     if(this.debug){
-      let algoBadge = this.getUserAlgoBadge(2);
+      var algoBadge = this.getUserAlgoBadge(2);
       console.log(algoBadge);
     }
 
