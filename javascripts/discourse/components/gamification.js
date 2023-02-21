@@ -72,8 +72,7 @@ export default class Gamification extends Component {
     );
 
     if(this.debug){
-      var algoBadge = this.getUserAlgoBadge(2);
-      console.log(algoBadge);
+      var algoBadge = this.getUserAlgoBadge(2);     
     }
 
   }
