@@ -1,6 +1,6 @@
 import Component from "@glimmer/component";
 
-/*
+
 export default class AlgoBadge extends Component {
   @service site;
   @tracked algoBadge = null;
@@ -8,30 +8,10 @@ export default class AlgoBadge extends Component {
   constructor() {
     super(...arguments);
     this.algoBadge = true;
-    console.log(params);
+    console.log(this.args);
   }
 
   willDestroy() {
     this.algoBadge = null;
   }
 }
-*/
-
-const AlgoBadge = Component.extend({    
-    algoBadge: null,
-
-    didReceiveAttrs() {
-        this._super(...arguments);
-        console.log('didReceiveAttrs', arguments)
-    },
-  
-    didRender() {
-        this._super(...arguments);
-        console.log('didRender', arguments)
-    },
-
-  });
-  
-  AlgoBadge.reopenClass({ positionalParams: ["userId"] });
-  
-  export default AlgoBadge;
