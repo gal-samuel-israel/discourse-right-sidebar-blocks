@@ -30,9 +30,6 @@ const AlgoBadge = Component.extend({
         console.log('didRender', arguments)
     },
 
-    willDestroy() {
-        this.algoBadge = null;
-    },
   });
   
   AlgoBadge.reopenClass({ positionalParams: ["userId"] });
