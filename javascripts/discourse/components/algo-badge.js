@@ -14,7 +14,7 @@ export default class AlgoBadge extends Component {
   constructor() {
     super(...arguments);
     this.algoBadge = true;
-    console.log(this.args, userId);
+    console.log(this.args, this.userId);
   }
 
   willDestroy() {
