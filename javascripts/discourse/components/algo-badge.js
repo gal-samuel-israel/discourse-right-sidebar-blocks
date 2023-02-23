@@ -17,6 +17,7 @@ export default class AlgoBadge extends Component {
   @tracked algoBadgeGrants = null;
 
   debug = false;
+  component_debug = false;
   showOnlyToAdmins = false;
   debug4All = false;
   debugForUsers = false;
@@ -62,6 +63,7 @@ export default class AlgoBadge extends Component {
   constructor() {
     super(...arguments);
 
+    this.component_debug = settings?.enable_debug_for_algobadge_component; //from settings.yml
     this.showOnlyToAdmins = settings?.enable_component_only_for_admins; //from settings.yml
     this.debugForAdmins = settings?.enable_debug_for_admins; //from settings.yml
     this.debug4All = settings?.enable_debug_for_all; //from settings.yml    
@@ -72,9 +74,12 @@ export default class AlgoBadge extends Component {
     if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
     if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
     if(this.debug4All){ this.debug = true; }
+    if(this.component_debug){ this.debug = true; } else { this.debug = false; } 
     if(this.debug){ console.log('algoBadge constructor:', this.args?.userId, this.userIdIsSet); }  
 
-    if(this.userIdIsSet){      
+    var showOnlyForAdmins = this.showOnlyToAdmins && !Discourse.User.currentProp('admin');
+
+    if(this.userIdIsSet && !showOnlyForAdmins){      
       this.getUserAlgoBadge(this.args?.userId)
       .then(() => {
         if(this.debug){ console.log('done:', this.args.userId);}
