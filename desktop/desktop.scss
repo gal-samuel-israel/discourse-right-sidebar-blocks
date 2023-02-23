@@ -65,17 +65,7 @@ span.gamification--user-index { grid-column: 1; grid-area: index; color: silver;
 span.gamification--user-card { grid-column: 1; justify-self: left; grid-area: left; }
 span.gamification--user-score { grid-area: right; justify-self: end; }
 
-.gamification--user-badge {
-  grid-area: left;
-  .limit-username-length{
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 19ch;
-    vertical-align: middle;
-  }
-}
+.limit-username-length{ display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 18ch; vertical-align: middle;}
 
 .gamification--user:nth-child(1) .svg-icon { 
     fill: #ffd82a;
