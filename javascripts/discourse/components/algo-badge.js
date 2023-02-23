@@ -34,8 +34,9 @@ export default class AlgoBadge extends Component {
       data: {"params": "{\"user_id\": \""+user_id+"\"}"}
     })
     .then((response) => {        
-      //if(this.debug){console.log(response);}
-      return this.objectifyResponse(response);    
+      if(this.debug){console.log(response);}
+      //if(obj !== 'undefined'){ 
+        return this.objectifyResponse(response);    
     });
   }
 
