@@ -24,7 +24,7 @@ export default class AlgoBadge extends Component {
     var keys = response.columns;
     var values = response.rows[0];
     for(var i = 0; i < keys.length; i++){ info[keys[i]] = values[i]; }
-    if(this.debug){console.log('objectifyResponse: ',info);} 
+    //if(this.debug){console.log('objectifyResponse: ',info);} 
     return info;
   }
 
@@ -37,7 +37,7 @@ export default class AlgoBadge extends Component {
     })
     .then((response) => {        
         //if(this.debug){console.log(response);}    
-        return (response.rows.length !== 0) ? this.objectifyResponse(response) : {};    
+        return (response?.rows?.length !== 0) ? this.objectifyResponse(response) : {};    
     });
   }
 
@@ -60,7 +60,7 @@ export default class AlgoBadge extends Component {
       
       this.getUserAlgoBadge(this.args?.userId)
       .then((obj) => {
-        if(obj && Object.keys(obj).length !== 0){
+        if(Object.keys(obj).length !== 0){
           this.algoBadge = true;
           console.log(obj);
           /*
@@ -77,6 +77,8 @@ export default class AlgoBadge extends Component {
           this.algoBadgeUrl = JSON.parse(obj.urls);
           console.log(this.algoBadgeUrl[0]);
 
+        } else {
+          console.log(obj);
         }
       });   
     }
