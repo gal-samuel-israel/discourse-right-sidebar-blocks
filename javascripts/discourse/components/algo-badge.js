@@ -51,7 +51,7 @@ export default class AlgoBadge extends Component {
           */
           this.algoBadge = true;
           this.algoBadgeInfo = JSON.parse(obj.badges);
-          console.log(this.algoBadgeInfo.split(','));
+          console.log(this.algoBadgeInfo);
           this.algoBadgeUrl = JSON.parse(obj.urls);
           console.log(this.algoBadgeUrl[0]);
         } 
