@@ -35,7 +35,7 @@ export default class AlgoBadge extends Component {
     })
     .then((response) => {        
         if(this.debug){console.log(response);}    
-        return (notEmpty(response.rows)) ? this.objectifyResponse(response) : {};    
+        return (response.rows.length !== 0) ? this.objectifyResponse(response) : {};    
     });
   }
 
