@@ -26,27 +26,7 @@ export default class Gamification extends Component {
 
   maxUsersToShow = 8; //update teh CSS for the badge hiding if above 10
 
-  objectifyResponse(response){    
-    var info = {};
-    var keys = response.columns;
-    var values = response.rows[0];
-    for(var i = 0; i < keys.length; i++){ info[keys[i]] = values[i]; }
-    if(this.debug){console.log('objectifyResponse: ',info);} 
-    return info;
-  }
-
-  async getUserAlgoBadge(user_id){ 
-    if(this.debug){console.log('getUserAlgoBadge: '+ user_id);}  
-    ajax(`/admin/plugins/explorer/queries/11/run`, {
-      type: "POST",
-      headers: { "Api-Username": "system", "Api-Key": "d0082b555db3459e85fee2d29b29b79edc689d8767a80fef33761ef16869d83c" }, //Data Explorer Ready Only - query 11
-      data: {"params": "{\"user_id\": \""+user_id+"\"}"}
-    })
-    .then((response) => {        
-      if(this.debug){console.log(response);}
-      return this.objectifyResponse(response);    
-    });
-  }
+ 
 
   constructor() {
     super(...arguments);    
@@ -69,11 +49,7 @@ export default class Gamification extends Component {
         this.gamificatinObj.users = scores.users.slice(0, this.maxUsersToShow);
         //console.log(scores);
       }
-    );
-
-    if(this.debug){
-      var algoBadge = this.getUserAlgoBadge(2);      
-    }
+    );   
 
   }
 
