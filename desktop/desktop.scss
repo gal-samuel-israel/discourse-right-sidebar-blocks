@@ -112,6 +112,9 @@ a.gamification--view-all.show-link { color: var(--primary); font-weight: normal;
 .gamification--container .gamification--user:nth-of-type(9) svg {display:none;}
 .gamification--container .gamification--user:nth-of-type(10) svg {display:none;}
 
+//AlgoBadges
+span.algobadge-wrap img{ width: 22px; position:relative; top:-1px; }
+
 // Recent replies
 .recent-replies--reply {
   border-bottom: 1px solid var(--primary-low);
