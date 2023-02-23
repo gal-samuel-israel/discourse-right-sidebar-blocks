@@ -29,7 +29,7 @@ export default class AlgoBadge extends Component {
     return info;
   }
 
-  async getUserAlgoBadge(user_id){ 
+  getUserAlgoBadge(user_id){ 
     if(this.debug){console.log('getUserAlgoBadge: '+ user_id);}  
     ajax(`/admin/plugins/explorer/queries/11/run`, {
       type: "POST",
