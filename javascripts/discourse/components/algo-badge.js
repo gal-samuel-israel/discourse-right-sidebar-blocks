@@ -16,6 +16,7 @@ export default class AlgoBadge extends Component {
   @tracked algoBadgeUrl = null;
   @tracked algoBadgeGrants = null;
 
+  component_enable = false;
   debug = false;
   component_debug = false;
   showOnlyToAdmins = false;
@@ -63,6 +64,7 @@ export default class AlgoBadge extends Component {
   constructor() {
     super(...arguments);
 
+    this.component_enable = settings?.enable_algobadge_component; //from settings.yml
     this.component_debug = settings?.enable_debug_for_algobadge_component; //from settings.yml
     this.showOnlyToAdmins = settings?.enable_component_only_for_admins; //from settings.yml
     this.debugForAdmins = settings?.enable_debug_for_admins; //from settings.yml
@@ -79,7 +81,7 @@ export default class AlgoBadge extends Component {
 
     var showOnlyForAdmins = this.showOnlyToAdmins && !Discourse.User.currentProp('admin');
 
-    if(this.userIdIsSet && !showOnlyForAdmins){      
+    if(this.component_enable && this.userIdIsSet && !showOnlyForAdmins){      
       this.getUserAlgoBadge(this.args?.userId)
       .then(() => {
         if(this.debug){ console.log('done:', this.args.userId);}
