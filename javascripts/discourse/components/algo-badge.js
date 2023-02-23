@@ -41,7 +41,7 @@ export default class AlgoBadge extends Component {
         //if(this.debug){console.log(response);}    
         if (response?.rows?.length !== 0) {
           var obj = this.objectifyResponse(response);          
-          console.log(obj);
+          if(this.debug){console.log(obj);}
           /* {
             "user_id": 35,
             "badges": "[\"111,Apprentice\"]",
