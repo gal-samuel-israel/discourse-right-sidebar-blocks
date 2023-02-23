@@ -11,8 +11,8 @@ export default class AlgoBadge extends Component {
   userIdIsSet;
 
   @tracked badgeRequest = null;
-  @tracked algoBadge = null;
   @tracked algoBadgeInfo = null;
+  @tracked algoBadgeName = null;
   @tracked algoBadgeUrl = null;
 
   debug = false;
@@ -41,20 +41,18 @@ export default class AlgoBadge extends Component {
         if (response?.rows?.length !== 0) {
           var obj = this.objectifyResponse(response);          
           console.log(obj);
-          /*
-          {
+          /* {
             "user_id": 35,
             "badges": "[\"111,Apprentice\"]",
             "image_upload_id": "[145]",
             "urls": "[\"//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/business20/uploads/algosec/original/1X/f716bd5a19db9db7aa93cba8eb0406405ba98e8e.png\"]"
-          } 
-          */
-          this.algoBadge = true;
-          let arrBadges = JSON.parse(obj.badges);
-          this.algoBadgeInfo = arrBadges[0].split(',')
-          console.log(this.algoBadgeInfo[1]);
-          this.algoBadgeUrl = JSON.parse(obj.urls);
-          console.log(this.algoBadgeUrl[0]);
+          } */
+          this.algoBadgeInfo = true;
+          let badges = JSON.parse(obj.badges);
+          let badgeArr = badges[0].split(',');
+          this.algoBadgeName = badgeArr[1];  
+          let urls = JSON.parse(obj.urls);        
+          this.algoBadgeUrl = urls[0];          
         } 
     });
   }
