@@ -58,7 +58,7 @@ export default class AlgoBadge extends Component {
       
       this.getUserAlgoBadge(this.args?.userId)
       .then((obj) => {
-        if(obj.length !== 0){
+        if(Object.keys(obj).length !== 0){
           this.algoBadge = true;
           console.log(obj);
         }
