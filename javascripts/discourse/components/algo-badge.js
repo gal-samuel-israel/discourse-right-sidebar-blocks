@@ -10,6 +10,7 @@ export default class AlgoBadge extends Component {
   @notEmpty("args.userId")
   userIdIsSet;
 
+  @tracked badgeRequest = null;
   @tracked algoBadge = null;
   @tracked algoBadgeInfo = null;
   @tracked algoBadgeUrl = null;
@@ -37,7 +38,9 @@ export default class AlgoBadge extends Component {
     })
     .then((response) => {        
         //if(this.debug){console.log(response);}    
-        return (response?.rows?.length !== 0) ? this.objectifyResponse(response) : {};    
+        if (response?.rows?.length !== 0) {
+          this.badgeRequest = this.objectifyResponse(response);
+        }    
     });
   }
 
@@ -59,8 +62,8 @@ export default class AlgoBadge extends Component {
     if(this.userIdIsSet){
       
       this.getUserAlgoBadge(this.args?.userId)
-      .then((obj) => {
-        if(obj !== undefined ){
+      .then(() => {
+        if(this.badgeRequest !== null ){
           this.algoBadge = true;
           console.log(obj);
           /*
@@ -77,8 +80,6 @@ export default class AlgoBadge extends Component {
           this.algoBadgeUrl = JSON.parse(obj.urls);
           console.log(this.algoBadgeUrl[0]);
 
-        } else {
-          console.log(obj);
         }
       });   
     }
