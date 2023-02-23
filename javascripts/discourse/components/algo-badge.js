@@ -14,6 +14,7 @@ export default class AlgoBadge extends Component {
   @tracked algoBadgeInfo = null;
   @tracked algoBadgeName = null;
   @tracked algoBadgeUrl = null;
+  @tracked algoBadgeGrants = null;
 
   debug = false;
   showOnlyToAdmins = false;
@@ -52,7 +53,8 @@ export default class AlgoBadge extends Component {
           let badgeArr = badges[0].split(',');
           this.algoBadgeName = badgeArr[1];  
           let urls = JSON.parse(obj.urls);        
-          this.algoBadgeUrl = urls[0];          
+          this.algoBadgeUrl = urls[0];
+          this.algoBadgeGrants = '/badges/'+badgeArr[0]+'/apprentice';
         } 
     });
   }
