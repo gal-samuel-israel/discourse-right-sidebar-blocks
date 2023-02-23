@@ -73,10 +73,10 @@ export default class AlgoBadge extends Component {
     var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null;    
     this.debug = false;
     
+    if(this.component_debug){ this.debug = true; } else { this.debug = false; } 
     if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
     if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
-    if(this.debug4All){ this.debug = true; }
-    if(this.component_debug){ this.debug = true; } else { this.debug = false; } 
+    if(this.debug4All){ this.debug = true; }    
     if(this.debug){ console.log('algoBadge constructor:', this.args?.userId, this.userIdIsSet); }  
 
     var showOnlyForAdmins = this.showOnlyToAdmins && !Discourse.User.currentProp('admin');
