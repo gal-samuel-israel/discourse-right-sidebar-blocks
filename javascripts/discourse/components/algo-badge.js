@@ -74,11 +74,10 @@ export default class AlgoBadge extends Component {
     if(this.debug4All){ this.debug = true; }
     if(this.debug){ console.log('algoBadge constructor:', this.args?.userId, this.userIdIsSet); }  
 
-    if(this.userIdIsSet){
-      
+    if(this.userIdIsSet){      
       this.getUserAlgoBadge(this.args?.userId)
       .then(() => {
-        console.log('done:', this.args.userId);
+        if(this.debug){ console.log('done:', this.args.userId);}
       });   
     }
     
