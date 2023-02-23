@@ -39,10 +39,22 @@ export default class AlgoBadge extends Component {
     .then((response) => {        
         //if(this.debug){console.log(response);}    
         if (response?.rows?.length !== 0) {
-          return this.objectifyResponse(response);
-        } else {
-          return false;
-        }   
+          var obj = this.objectifyResponse(response);          
+          console.log(obj);
+          /*
+          {
+            "user_id": 35,
+            "badges": "[\"111,Apprentice\"]",
+            "image_upload_id": "[145]",
+            "urls": "[\"//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/business20/uploads/algosec/original/1X/f716bd5a19db9db7aa93cba8eb0406405ba98e8e.png\"]"
+          } 
+          */
+          this.algoBadge = true;
+          this.algoBadgeInfo = JSON.parse(obj.badges);
+          console.log(this.algoBadgeInfo[1]);
+          this.algoBadgeUrl = JSON.parse(obj.urls);
+          console.log(this.algoBadgeUrl[0]);
+        } 
     });
   }
 
@@ -64,25 +76,8 @@ export default class AlgoBadge extends Component {
     if(this.userIdIsSet){
       
       this.getUserAlgoBadge(this.args?.userId)
-      .then((obj) => {
-        if(obj){
-          this.algoBadge = true;
-          console.log(obj);
-          /*
-          {
-            "user_id": 35,
-            "badges": "[\"111,Apprentice\"]",
-            "image_upload_id": "[145]",
-            "urls": "[\"//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/business20/uploads/algosec/original/1X/f716bd5a19db9db7aa93cba8eb0406405ba98e8e.png\"]"
-          } 
-          */
-          
-          this.algoBadgeInfo = JSON.parse(obj.badges);
-          console.log(this.algoBadgeInfo[1]);
-          this.algoBadgeUrl = JSON.parse(obj.urls);
-          console.log(this.algoBadgeUrl[0]);
-
-        }
+      .then(() => {
+        console.log('done:', this.args.userId);
       });   
     }
     
