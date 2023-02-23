@@ -34,7 +34,7 @@ export default class AlgoBadge extends Component {
       data: {"params": "{\"user_id\": \""+user_id+"\"}"}
     })
     .then((response) => {        
-      if(this.debug){console.log(response);}
+      //if(this.debug){console.log(response);}
       return this.objectifyResponse(response);    
     });
   }
@@ -55,7 +55,8 @@ export default class AlgoBadge extends Component {
     if(this.debug){ console.log('algoBadge constructor:', this.args?.userId, this.userIdIsSet); }  
 
     if(this.userIdIsSet){
-      this.algoBadge = this.getUserAlgoBadge(this.args?.userId);      
+      this.algoBadge = true;
+      console.log(this.getUserAlgoBadge(this.args?.userId));      
     }
     
   }
