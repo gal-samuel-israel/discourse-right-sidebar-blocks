@@ -39,8 +39,10 @@ export default class AlgoBadge extends Component {
     .then((response) => {        
         //if(this.debug){console.log(response);}    
         if (response?.rows?.length !== 0) {
-          this.badgeRequest = this.objectifyResponse(response);
-        }    
+          return this.objectifyResponse(response);
+        } else {
+          return false;
+        }   
     });
   }
 
@@ -62,8 +64,8 @@ export default class AlgoBadge extends Component {
     if(this.userIdIsSet){
       
       this.getUserAlgoBadge(this.args?.userId)
-      .then(() => {
-        if(this.badgeRequest !== null ){
+      .then((obj) => {
+        if(obj){
           this.algoBadge = true;
           console.log(obj);
           /*
