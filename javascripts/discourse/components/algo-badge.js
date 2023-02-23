@@ -12,6 +12,7 @@ export default class AlgoBadge extends Component {
 
   @tracked algoBadge = null;
   @tracked algoBadgeInfo = null;
+  @tracked algoBadgeUrl = null;
 
   debug = false;
   showOnlyToAdmins = false;
