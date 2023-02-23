@@ -2,6 +2,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { empty, equal, notEmpty } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
+import { ajax } from "discourse/lib/ajax";
 
 export default class AlgoBadge extends Component {
   @service site;
@@ -54,8 +55,7 @@ export default class AlgoBadge extends Component {
     if(this.debug){ console.log('algoBadge constructor:', this.args?.userId, this.userIdIsSet); }  
 
     if(this.userIdIsSet){
-      this.algoBadge = this.getUserAlgoBadge(this.args?.userId);
-      console.log(this.algoBadge);
+      this.algoBadge = this.getUserAlgoBadge(this.args?.userId);      
     }
     
   }
