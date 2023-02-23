@@ -113,7 +113,7 @@ a.gamification--view-all.show-link { color: var(--primary); font-weight: normal;
 .gamification--container .gamification--user:nth-of-type(10) svg {display:none;}
 
 //AlgoBadges
-span.algobadge-wrap img{ width: 22px; position:relative; top:-1px; }
+span.algobadge-wrap img{ width: 22px; position:relative; top:-1px; border:none;}
 
 // Recent replies
 .recent-replies--reply {
