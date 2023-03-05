@@ -53,6 +53,23 @@
 }
 
 // Gamification
+.rs-component.rs-gamification {
+  display: block;
+  position: relative;
+  .gamification-info-link{
+    display: inline-block;
+    position: absolute;
+    right: 1em;
+    top:1em
+  }
+  .gamification-info-link a {
+      text-align:center;
+      height: 1em;
+      width: 1em;
+      display:block;
+      position:relative;    
+  }
+}
 .gamification--user {
   margin-bottom: 0.8em;
   display: grid;
