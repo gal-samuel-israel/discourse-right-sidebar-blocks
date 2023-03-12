@@ -15,7 +15,7 @@ export default class Gamification extends Component {
   @tracked loading = false;
   @tracked canLoadMore = true;
   @tracked gamificatinObj = null;
-  @tracked period = "weekly";
+  @tracked period = "monthly";
   @tracked activeWeekly = true;
   @tracked activeAll = false;
 
@@ -77,7 +77,7 @@ export default class Gamification extends Component {
   scoreForWeek(event){
     event?.preventDefault();
     this.activeWeekly = true; this.activeAll = false;  
-    this._changePeriod('weekly');    
+    this._changePeriod('monthly');    
   }
 
   @action
