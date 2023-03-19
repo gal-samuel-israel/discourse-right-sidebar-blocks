@@ -41,9 +41,16 @@ export default class Gamification extends Component {
     if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
     if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
     if(this.debug4All){ this.debug = true; }
-    if(this.debug){ console.log('component gamification constructor:'); }    
+    if(this.debug){ 
+      console.log('component gamification constructor:'); 
+      console.log('currentUser:', this.currentUser)
+    }    
 
-    ajax(`/leaderboard/?period=${this.period}`)
+    var isAlgoSecUser = false;
+
+    var leaderboardURL = (isAlgoSecUser) ? `/leaderboard/4?period=${this.period}`:`/leaderboard/?period=${this.period}`;
+
+    ajax(leaderboardURL)
     .then((scores) => {
         this.gamificatinObj = scores;
         this.gamificatinObj.users = scores.users.slice(0, this.maxUsersToShow);
