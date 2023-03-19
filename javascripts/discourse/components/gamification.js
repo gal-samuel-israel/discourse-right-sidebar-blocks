@@ -11,7 +11,7 @@ registerUnbound("inc", function(value){
 
 const  checkIfGroupIsInUserGroups = function (group, arrGroups) {
   return arrGroups.some(function(el) {
-    return el.name === group;
+    return el.name.toLowerCase() === group;
   }); 
 }
 
