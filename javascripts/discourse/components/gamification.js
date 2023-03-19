@@ -9,6 +9,11 @@ registerUnbound("inc", function(value){
   return parseInt(value) + 1;
 });
 
+const  checkIfGroupIsInUserGroups = function (group, arrGroups) {
+  return arrGroups.some(function(el) {
+    return el.name === group;
+  }); 
+}
 
 export default class Gamification extends Component {
   @tracked page = 1;
@@ -46,7 +51,8 @@ export default class Gamification extends Component {
       console.log('curerntUser groups:', Discourse.User.currentProp('groups'));
     }    
 
-    var isAlgoSecUser = false;
+    var isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
+    if(this.debug){ console.log('isAlgoSecUser:', isAlgoSecUser); }
 
     var leaderboardURL = (isAlgoSecUser) ? `/leaderboard/4?period=${this.period}`:`/leaderboard/?period=${this.period}`;
 
