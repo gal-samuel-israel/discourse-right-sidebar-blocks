@@ -32,9 +32,15 @@
   {{/if}}
 </div>
 
+{{#if this.isAlgoSecUser}}
+<a href='{{theme-i18n "gamification.view_all_link_algosec_only"}}' class="gamification--view-all {{if (theme-i18n "gamification.view_all_link_algosec_only") "show-link" "hide-link"}}" >
+  {{theme-i18n "gamification.view_all_tag"}} {{d-icon "angle-right"}}
+</a>
+{{else}}
 <a href='{{theme-i18n "gamification.view_all_link"}}' class="gamification--view-all {{if (theme-i18n "gamification.view_all_link") "show-link" "hide-link"}}" >
   {{theme-i18n "gamification.view_all_tag"}} {{d-icon "angle-right"}}
 </a>
+{{/if}}
 
 <a href='{{theme-i18n "gamification.view_all_badges_link"}}' class="gamification--view-badges {{if (theme-i18n "gamification.view_all_badges_link") "show-link" "hide-link"}}">
   {{theme-i18n "gamification.view_all_badges_tag"}}
