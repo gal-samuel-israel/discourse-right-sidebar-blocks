@@ -12,5 +12,6 @@ en:
     heading: "Global Leaderboard"
     view_all_tag: "Show Full Leaderboard"
     view_all_link: "/leaderboard"
+    view_all_link_algosec_only: "/leaderboard/4"
     view_all_badges_tag: "Badges"
     view_all_badges_link: "/badges"

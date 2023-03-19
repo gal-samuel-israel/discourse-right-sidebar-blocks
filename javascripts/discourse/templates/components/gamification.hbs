@@ -32,7 +32,7 @@
   {{/if}}
 </div>
 
-<a href='{{theme-i18n "gamification.view_all_link"}}' class="gamification--view-all {{if (theme-i18n "gamification.view_all_link") "show-link" "hide-link"}}" >
+<a href='{{theme-i18n if this.isAlgoSecUser "gamification.view_all_link_algosec_only" "gamification.view_all_link"}}' class="gamification--view-all {{if (theme-i18n "gamification.view_all_link") "show-link" "hide-link"}}" >
   {{theme-i18n "gamification.view_all_tag"}} {{d-icon "angle-right"}}
 </a>
 

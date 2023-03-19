@@ -31,7 +31,7 @@ export default class Gamification extends Component {
 
   maxUsersToShow = 8; //update teh CSS for the badge hiding if above 10
 
- 
+  isAlgoSecUser = false;
 
   constructor() {
     super(...arguments);    
@@ -51,10 +51,10 @@ export default class Gamification extends Component {
       console.log('curerntUser groups:', Discourse.User.currentProp('groups'));
     }    
 
-    var isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
+    this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
     if(this.debug){ console.log('isAlgoSecUser:', isAlgoSecUser); }
 
-    var leaderboardURL = (isAlgoSecUser) ? `/leaderboard/4?period=${this.period}`:`/leaderboard/?period=${this.period}`;
+    var leaderboardURL = (this.isAlgoSecUser) ? `/leaderboard/4?period=${this.period}`:`/leaderboard/?period=${this.period}`;
 
     ajax(leaderboardURL)
     .then((scores) => {
