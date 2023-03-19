@@ -52,7 +52,7 @@ export default class Gamification extends Component {
     }    
 
     this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
-    if(this.debug){ console.log('isAlgoSecUser:', isAlgoSecUser); }
+    if(this.debug){ console.log('isAlgoSecUser:', this.isAlgoSecUser); }
 
     var leaderboardURL = (this.isAlgoSecUser) ? `/leaderboard/4?period=${this.period}`:`/leaderboard/?period=${this.period}`;
 
