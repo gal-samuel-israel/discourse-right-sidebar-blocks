@@ -43,7 +43,7 @@ export default class Gamification extends Component {
     if(this.debug4All){ this.debug = true; }
     if(this.debug){ 
       console.log('component gamification constructor:'); 
-      console.log('currentUser:', this.currentUser)
+      console.log('curerntUser groups:', Discourse.User.currentProp('groups'));
     }    
 
     var isAlgoSecUser = false;
