@@ -20,6 +20,7 @@ export default class Gamification extends Component {
   @tracked loading = false;
   @tracked canLoadMore = true;
   @tracked gamificatinObj = null;
+  @tracked gamificatinObj2 = null;
   @tracked period = "monthly";
   @tracked activeMonthly = true;
   @tracked activeAll = false;
@@ -55,6 +56,7 @@ export default class Gamification extends Component {
     if(this.debug){ console.log('isAlgoSecUser:', this.isAlgoSecUser); }
 
     var leaderboardURL = (this.isAlgoSecUser) ? `/leaderboard/4?period=${this.period}`:`/leaderboard/?period=${this.period}`;
+    var secondboardURL = (this.isAlgoSecUser) ? `/leaderboard/?period=${this.period}` : false;
 
     ajax(leaderboardURL)
     .then((scores) => {
@@ -63,6 +65,16 @@ export default class Gamification extends Component {
         //console.log(scores);
       }
     );   
+
+    if(this.debug && secondboardURL !== false){
+      ajax(secondboardURL)
+      .then((scores) => {
+          this.gamificatinObj2 = scores;
+          this.gamificatinObj2.users = scores.users.slice(0, this.maxUsersToShow);
+          //console.log(scores);
+        }
+      );  
+    }
 
   }
 
