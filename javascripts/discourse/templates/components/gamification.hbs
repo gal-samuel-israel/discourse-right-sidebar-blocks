@@ -47,15 +47,21 @@
 </a>
 
 {{#if this.isAlgoSecUser}}
+  <hr>
   <h3 class="gamification-heading">
     {{#if this.isAlgoSecUser}}Users {{/if}}{{theme-i18n "gamification.heading"}}
   </h3>
 
+  <div class="gamification-controls-wrap">
+    <a href {{on "click" this.scoreForMonth_2}} class="gamification-control {{if this.activeMonthly_2 "active" ""}}">Last 30 days</a>
+    <a href {{on "click" this.scoreForAll_2}} class="gamification-control {{if this.activeAll_2 "active" ""}}">All time</a>
+  </div>
+
   <div class="gamification--container">
-    {{#if loading}}
+    {{#if loading_2}}
       <div class="gamification-loader">Loading</div>
     {{else}}
-      {{#each gamificatinObj2.users as |item index|}}
+      {{#each gamificatinObj_2.users as |item index|}}
         <div class="gamification--user">
           <span class="gamification--user-index">{{inc index}}</span>
           <span data-user-card={{item.username}} class="gamification--user-card">
