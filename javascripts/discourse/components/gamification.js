@@ -73,7 +73,7 @@ export default class Gamification extends Component {
       }
     );   
 
-    if(this.debug && secondboardURL !== false){
+    if(secondboardURL !== false){
       ajax(secondboardURL)
       .then((scores) => {
           this.gamificatinObj_2 = scores;
