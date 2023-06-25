@@ -43,7 +43,7 @@ export default class AlgoBadge extends Component {
         //if(this.debug){console.log(response);}    
         if (response?.rows?.length !== 0) {
           var obj = this.objectifyResponse(response);          
-          if(this.debug){console.log(obj);}
+          //TEST LOOP SOURCE//if(this.debug){console.log(obj);}
           /* {
             "user_id": 35,
             "badges": "[\"111,Apprentice\"]",
@@ -77,14 +77,14 @@ export default class AlgoBadge extends Component {
     if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
     if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
     if(this.debug4All){ this.debug = true; }    
-    if(this.debug){ console.log('algoBadge constructor:', this.args?.userId, this.userIdIsSet); }  
+    //TEST LOOP SOURCE//if(this.debug){ console.log('algoBadge constructor:', this.args?.userId, this.userIdIsSet); }  
 
     var showOnlyForAdmins = this.showOnlyToAdmins && !Discourse.User.currentProp('admin');
 
     if(this.component_enable && this.userIdIsSet && !showOnlyForAdmins){      
       this.getUserAlgoBadge(this.args?.userId)
       .then(() => {
-        if(this.debug){ console.log('done:', this.args.userId);}
+        if(this.debug){ /*TEST LOOP SOURCE ** console.log('done:', this.args.userId);*/ }
       });   
     }
     
