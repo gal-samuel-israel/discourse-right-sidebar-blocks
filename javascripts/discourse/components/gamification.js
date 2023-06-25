@@ -55,14 +55,18 @@ export default class Gamification extends Component {
     if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
     if(this.debug4All){ this.debug = true; }
     if(this.debug){ 
-      console.log('component gamification constructor:'); 
-      console.log('Deprecating Discourse.User.currentProp(groups):', Discourse.User.currentProp('groups'));
+      //TEST LOOP SOURCE//console.log('component gamification constructor:'); 
+      //TEST LOOP SOURCE//console.log('Deprecating Discourse.User.currentProp(groups):', Discourse.User.currentProp('groups'));
       //check before deprecation of Discourse.User
-      if(discourse?.global?.user !== undefined){ console.log('discourse.global.user groups:', discourse.global.user.currentProp('groups'));}
+      if(discourse?.global?.user !== undefined){ 
+        console.log('discourse.global.user groups:', discourse.global.user.currentProp('groups'));
+      }
     }    
 
     this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
-    if(this.debug){ console.log('isAlgoSecUser:', this.isAlgoSecUser); }
+    if(this.debug){ 
+      //TEST LOOP SOURCE//console.log('isAlgoSecUser:', this.isAlgoSecUser); 
+    }
 
     var leaderboardURL = (this.isAlgoSecUser) ? `/leaderboard/4?period=${this.period}`:`/leaderboard/?period=${this.period}`;
     var secondboardURL = (this.isAlgoSecUser) ? `/leaderboard/?period=${this.period_2}` : false;
@@ -71,7 +75,7 @@ export default class Gamification extends Component {
     .then((scores) => {
         this.gamificatinObj = scores;
         this.gamificatinObj.users = scores.users.slice(0, this.maxUsersToShow);
-        //console.log(scores);
+        //TEST LOOP SOURCE//console.log(scores);
       }
     );   
 
@@ -80,7 +84,7 @@ export default class Gamification extends Component {
       .then((scores) => {
           this.gamificatinObj_2 = scores;
           this.gamificatinObj_2.users = scores.users.slice(0, this.maxUsersToShow);
-          //console.log(scores);
+          //TEST LOOP SOURCE//console.log(scores);
         }
       );  
     }
@@ -95,7 +99,7 @@ export default class Gamification extends Component {
       `/leaderboard/${this.gamificatinObj.leaderboard.id}?period=${this.period}`
     )
       .then((result) => {
-        //if(this.debug){ console.log(result);  }
+        //TEST LOOP SOURCE//if(this.debug){ console.log(result);  }
         if (result.users.length === 0) {
           this.canLoadMore = false;
         }
@@ -109,13 +113,13 @@ export default class Gamification extends Component {
 
   _changePeriod_2(period) {    
     this.period_2 = period;
-    //if(this.debug){ console.log('changePeriod:' + period);  }
+    //TEST LOOP SOURCE//if(this.debug){ console.log('changePeriod:' + period);  }
 
     return ajax(
       `/leaderboard/${this.gamificatinObj_2.leaderboard.id}?period=${this.period_2}`
     )
       .then((result) => {
-        //if(this.debug){ console.log(result);  }
+        //TEST LOOP SOURCE//if(this.debug){ console.log(result);  }
         if (result.users.length === 0) {
           this.canLoadMore_2 = false;
         }
