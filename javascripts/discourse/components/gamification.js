@@ -58,7 +58,7 @@ export default class Gamification extends Component {
       console.log('component gamification constructor:'); 
       console.log('Deprecating Discourse.User.currentProp(groups):', Discourse.User.currentProp('groups'));
       //check before deprecation of Discourse.User
-      if(discourse?.global?.user){ console.log('discourse.global.user groups:', discourse.global.user.currentProp('groups'));}
+      if(discourse?.global?.user !== undefined){ console.log('discourse.global.user groups:', discourse.global.user.currentProp('groups'));}
     }    
 
     this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
@@ -95,7 +95,7 @@ export default class Gamification extends Component {
       `/leaderboard/${this.gamificatinObj.leaderboard.id}?period=${this.period}`
     )
       .then((result) => {
-        if(this.debug){ console.log(result);  }
+        //if(this.debug){ console.log(result);  }
         if (result.users.length === 0) {
           this.canLoadMore = false;
         }
@@ -109,13 +109,13 @@ export default class Gamification extends Component {
 
   _changePeriod_2(period) {    
     this.period_2 = period;
-    if(this.debug){ console.log('changePeriod:' + period);  }
+    //if(this.debug){ console.log('changePeriod:' + period);  }
 
     return ajax(
       `/leaderboard/${this.gamificatinObj_2.leaderboard.id}?period=${this.period_2}`
     )
       .then((result) => {
-        if(this.debug){ console.log(result);  }
+        //if(this.debug){ console.log(result);  }
         if (result.users.length === 0) {
           this.canLoadMore_2 = false;
         }
