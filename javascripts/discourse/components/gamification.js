@@ -58,7 +58,7 @@ export default class Gamification extends Component {
       console.log('component gamification constructor:'); 
       console.log('Deprecating Discourse.User.currentProp(groups):', Discourse.User.currentProp('groups'));
       //check before deprecation of Discourse.User
-      console.log('discourse.global.user groups:', discourse.global.user.currentProp('groups'));
+      if(discourse?.global?.user){ console.log('discourse.global.user groups:', discourse.global.user.currentProp('groups'));}
     }    
 
     this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
