@@ -51,21 +51,21 @@ export default class Gamification extends Component {
     this.debugForUsers = settings?.enable_debug_for_user_ids; //from settings.yml       
     this.debug = false;
     
-    //DEPRECATED//if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
-    if(getUser().admin && this.debugForAdmins){ this.debug = true; }
+    if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
+    //NOT WORKING//if(getUser().admin && this.debugForAdmins){ this.debug = true; }
 
     var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null; 
-    //DEPRECATED//if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
-    if (debugForIDs && debugForIDs.includes(getUser().id.toString())) { this.debug = true; }
+    if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
+    //NOT WORKING//if (debugForIDs && debugForIDs.includes(getUser().id.toString())) { this.debug = true; }
     if(this.debug4All){ this.debug = true; }
     if(this.debug){ 
       console.log('component gamification constructor:'); 
-      //DEPRECATED console.log('Deprecating Discourse.User.currentProp(groups):', Discourse.User.currentProp('groups')); 
-      console.log('User groups:', getUser().groups);  
+      console.log('Deprecating Discourse.User.currentProp(groups):', Discourse.User.currentProp('groups')); 
+      //NOT WORKING//console.log('User groups:', getUser().groups);  
     }    
 
-    //DEPRECATED//this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
-    this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', getUser().groups);
+    this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
+    //NOT WORKING//this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', getUser().groups);
     if(this.debug){ 
       console.log('isAlgoSecUser:', this.isAlgoSecUser); 
     }
