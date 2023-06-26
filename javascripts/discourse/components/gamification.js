@@ -53,6 +53,7 @@ export default class Gamification extends Component {
     
     if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
     //NOT WORKING//if(getUser().admin && this.debugForAdmins){ this.debug = true; }
+    if(getUser().admin){console.log('getUser:', getUser().admin);}
 
     var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null; 
     if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
