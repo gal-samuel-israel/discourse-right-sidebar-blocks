@@ -1,5 +1,4 @@
-//DEPRECATED//import discourseComputed from "discourse-common/utils/decorators";
-import Computed from "@ember-decorators/object";
+import discourseComputed from "discourse-common/utils/decorators";
 import { inject as service } from "@ember/service";
 
 export default {
@@ -7,7 +6,7 @@ export default {
     this.reopen({
       router: service(),
 
-      @Computed("router.currentRouteName")
+      @discourseComputed("router.currentRouteName")
       showSidebar(currentRouteName) {
         if (this.site.mobileView) {
           return false;
