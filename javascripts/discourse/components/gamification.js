@@ -3,6 +3,7 @@ import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { popupAjaxError } from "discourse/lib/ajax-error";
+import { getUser } from "discourse/models/user";
 import { registerUnbound } from "discourse-common/lib/helpers";
 
 registerUnbound("inc", function(value){
@@ -47,25 +48,26 @@ export default class Gamification extends Component {
     this.showOnlyToAdmins = settings?.enable_component_only_for_admins; //from settings.yml
     this.debugForAdmins = settings?.enable_debug_for_admins; //from settings.yml
     this.debug4All = settings?.enable_debug_for_all; //from settings.yml    
-    this.debugForUsers = settings?.enable_debug_for_user_ids; //from settings.yml
-    var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null;    
+    this.debugForUsers = settings?.enable_debug_for_user_ids; //from settings.yml       
     this.debug = false;
     
-    if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
-    if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
+    //DEPRECATED//if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
+    if(getUser().admin && this.debugForAdmins){ this.debug = true; }
+
+    var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null; 
+    //DEPRECATED//if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
+    if (debugForIDs && debugForIDs.includes(getUser().id.toString())) { this.debug = true; }
     if(this.debug4All){ this.debug = true; }
     if(this.debug){ 
-      //TEST LOOP SOURCE//console.log('component gamification constructor:'); 
-      //TEST LOOP SOURCE//console.log('Deprecating Discourse.User.currentProp(groups):', Discourse.User.currentProp('groups'));
-      //check before deprecation of Discourse.User
-      if(discourse?.global?.user !== undefined){ 
-        console.log('discourse.global.user groups:', discourse.global.user.currentProp('groups'));
-      }
+      console.log('component gamification constructor:'); 
+      //DEPRECATED console.log('Deprecating Discourse.User.currentProp(groups):', Discourse.User.currentProp('groups')); 
+      console.log('User groups:', getUser().groups);  
     }    
 
-    this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
+    //DEPRECATED//this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
+    this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', getUser().groups);
     if(this.debug){ 
-      //TEST LOOP SOURCE//console.log('isAlgoSecUser:', this.isAlgoSecUser); 
+      console.log('isAlgoSecUser:', this.isAlgoSecUser); 
     }
 
     var leaderboardURL = (this.isAlgoSecUser) ? `/leaderboard/4?period=${this.period}`:`/leaderboard/?period=${this.period}`;
@@ -75,7 +77,7 @@ export default class Gamification extends Component {
     .then((scores) => {
         this.gamificatinObj = scores;
         this.gamificatinObj.users = scores.users.slice(0, this.maxUsersToShow);
-        //TEST LOOP SOURCE//console.log(scores);
+        console.log(scores);
       }
     );   
 
@@ -84,7 +86,7 @@ export default class Gamification extends Component {
       .then((scores) => {
           this.gamificatinObj_2 = scores;
           this.gamificatinObj_2.users = scores.users.slice(0, this.maxUsersToShow);
-          //TEST LOOP SOURCE//console.log(scores);
+          console.log(scores);
         }
       );  
     }
@@ -99,7 +101,7 @@ export default class Gamification extends Component {
       `/leaderboard/${this.gamificatinObj.leaderboard.id}?period=${this.period}`
     )
       .then((result) => {
-        //TEST LOOP SOURCE//if(this.debug){ console.log(result);  }
+        if(this.debug){ console.log(result);  }
         if (result.users.length === 0) {
           this.canLoadMore = false;
         }
@@ -113,13 +115,13 @@ export default class Gamification extends Component {
 
   _changePeriod_2(period) {    
     this.period_2 = period;
-    //TEST LOOP SOURCE//if(this.debug){ console.log('changePeriod:' + period);  }
+    if(this.debug){ console.log('changePeriod:' + period);  }
 
     return ajax(
       `/leaderboard/${this.gamificatinObj_2.leaderboard.id}?period=${this.period_2}`
     )
       .then((result) => {
-        //TEST LOOP SOURCE//if(this.debug){ console.log(result);  }
+        if(this.debug){ console.log(result);  }
         if (result.users.length === 0) {
           this.canLoadMore_2 = false;
         }
