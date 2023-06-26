@@ -1,4 +1,4 @@
-import discourseComputed from "discourse-common/utils/decorators";
+import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
 
 export default {
@@ -6,20 +6,21 @@ export default {
     this.reopen({
       router: service(),
 
-      @discourseComputed("router.currentRouteName")
-      showSidebar(currentRouteName) {
+      showSidebar: computed("router.currentRouteName", function () {
+        const currentRouteName = this.router.currentRouteName;
+
         if (this.site.mobileView) {
           return false;
         }
 
         if (settings.show_in_routes !== "") {
           const selectedRoutes = settings.show_in_routes.split("|");
-          return selectedRoutes.includes(currentRouteName) ? true : false;
+          return selectedRoutes.includes(currentRouteName);
         }
 
         // if theme setting is empty, show everywhere except /categories
-        return currentRouteName === "discovery.categories" ? false : true;
-      },
+        return currentRouteName !== "discovery.categories";
+      }),
     });
   },
 };
