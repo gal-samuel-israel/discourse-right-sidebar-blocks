@@ -3,7 +3,6 @@ import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { popupAjaxError } from "discourse/lib/ajax-error";
-import { getUser } from "discourse/models/user";
 import { registerUnbound } from "discourse-common/lib/helpers";
 
 registerUnbound("inc", function(value){
@@ -51,22 +50,40 @@ export default class Gamification extends Component {
     this.debugForUsers = settings?.enable_debug_for_user_ids; //from settings.yml       
     this.debug = false;
     
-    if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
-    //NOT WORKING//if(getUser().admin && this.debugForAdmins){ this.debug = true; }
-    //if(getUser().admin){console.log('getUser:', getUser().admin);}
-
     var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null; 
-    if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
-    //NOT WORKING//if (debugForIDs && debugForIDs.includes(getUser().id.toString())) { this.debug = true; }
+    
+    var groups;
+    
+    //THE OLD WAY
+    if (typeof Discourse?.User?.currentProp === 'function' && typeof Discourse?.User?.currentProp('admin') !== 'undefined') {
+      if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
+      if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
+      groups = Discourse.User.currentProp('groups');      
+    } 
+
+    //THE NEW WAY
+    if (typeof require?.('discourse/models/user')?.getUser === 'function') {
+      // Use getUser() method from discourse/models/user
+      const { getUser } = require('discourse/models/user');
+      
+      if(getUser().admin && this.debugForAdmins){ this.debug = true; }
+      if(debugForIDs && debugForIDs.includes(getUser().id.toString())) { this.debug = true; }
+      groups = getUser().groups;
+    } else {
+      console.warn('getUser not in discourse/models/user');
+    }
+
+    if (typeof groups !== 'object' && Object.prototype.toString.call(groups) !== '[object Object]') {
+      groups = {};
+    }
+
     if(this.debug4All){ this.debug = true; }
     if(this.debug){ 
       console.log('component gamification constructor:'); 
-      console.log('Deprecating Discourse.User.currentProp(groups):', Discourse.User.currentProp('groups')); 
-      //NOT WORKING//console.log('User groups:', getUser().groups);  
+      console.log('User Groups:', groups);        
     }    
 
-    this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', Discourse.User.currentProp('groups')) ;
-    //NOT WORKING//this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', getUser().groups);
+    this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', groups) ;    
     if(this.debug){ 
       console.log('isAlgoSecUser:', this.isAlgoSecUser); 
     }
@@ -78,7 +95,7 @@ export default class Gamification extends Component {
     .then((scores) => {
         this.gamificatinObj = scores;
         this.gamificatinObj.users = scores.users.slice(0, this.maxUsersToShow);
-        console.log(scores);
+        //console.log(scores);
       }
     );   
 
@@ -87,7 +104,7 @@ export default class Gamification extends Component {
       .then((scores) => {
           this.gamificatinObj_2 = scores;
           this.gamificatinObj_2.users = scores.users.slice(0, this.maxUsersToShow);
-          console.log(scores);
+          //console.log(scores);
         }
       );  
     }
