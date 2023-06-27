@@ -64,8 +64,7 @@ export default class Gamification extends Component {
     //THE NEW WAY
     if (typeof require?.('discourse/models/user')?.getUser === 'function') {
       // Use getUser() method from discourse/models/user
-      const { getUser } = require('discourse/models/user');
-      
+      const { getUser } = require('discourse/models/user');      
       if(getUser().admin && this.debugForAdmins){ this.debug = true; }
       if(debugForIDs && debugForIDs.includes(getUser().id.toString())) { this.debug = true; }
       groups = getUser().groups;
