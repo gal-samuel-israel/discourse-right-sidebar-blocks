@@ -79,21 +79,19 @@ export default class AlgoBadge extends Component {
     //THE OLD WAY
     if (typeof Discourse?.User?.currentProp === 'function' && typeof Discourse?.User?.currentProp('admin') !== 'undefined') {
       if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
-      if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
+      if(this.component_debug && debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
       showOnlyForAdmins = this.showOnlyToAdmins && !Discourse.User.currentProp('admin');
-    } 
-
-    //THE NEW WAY
-    if (typeof require?.('discourse/models/user')?.getUser === 'function') {
+    } else if (typeof require?.('discourse/models/user')?.getUser === 'function') {
+      //THE NEW WAY
       // Use getUser() method from discourse/models/user
       const { getUser } = require('discourse/models/user');      
       if(getUser().admin && this.debugForAdmins){ this.debug = true; }
-      if(debugForIDs && debugForIDs.includes(getUser().id.toString())) { this.debug = true; }
+      if(this.component_debug && debugForIDs && debugForIDs.includes(getUser().id.toString())) { this.debug = true; }
     } else {
       console.warn('getUser not in discourse/models/user');
     }
 
-    if(this.debug4All){ this.debug = true; }    
+    if(this.component_debug && this.debug4All){ this.debug = true; }    
     if(this.debug){ console.log('algoBadge constructor:', this.args?.userId, this.userIdIsSet); }   
 
     if(this.component_enable && this.userIdIsSet && !showOnlyForAdmins){      
