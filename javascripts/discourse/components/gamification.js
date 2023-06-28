@@ -79,7 +79,10 @@ export default class Gamification extends Component {
     if(this.debug4All){ this.debug = true; }
     if(this.debug){ 
       console.log('component gamification constructor:'); 
-      console.log('User Groups:', groups);        
+      console.log('User Groups:', groups); 
+      console.log('tcu admin:', this.currentUser.admin);
+      console.log('tcu id:', this.currentUser.id);
+      console.log('tcu groups:', this.currentUser.groups);
     }    
 
     this.isAlgoSecUser = checkIfGroupIsInUserGroups('algosec', groups) ;    
