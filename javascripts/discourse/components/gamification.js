@@ -11,6 +11,11 @@ registerUnbound("helperIncrement", function(value){
 });
 */
 
+import { registerRawHelper } from "discourse-common/lib/helpers";
+registerRawHelper("helperIncrement", function(value){
+  return parseInt(value) + 1;
+});
+
 const  checkIfGroupIsInUserGroups = function (group, arrGroups) {
   return arrGroups.some(function(el) {
     return el.name.toLowerCase() === group;
