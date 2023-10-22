@@ -3,10 +3,15 @@ import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { popupAjaxError } from "discourse/lib/ajax-error";
-import { registerUnbound } from "discourse-common/lib/helpers";  
-//import { registerRawHelper } from "discourse-common/lib/raw-helpers";
+//import { registerUnbound } from "discourse-common/lib/helpers";  
+import { registerRawHelpers } from "discourse-common/lib/raw-handlebars-helpers";
 
+/*
 registerUnbound("helperIncrement", function(value){
+  return parseInt(value) + 1;
+});
+*/
+registerRawHelpers("helperIncrement", function(value){
   return parseInt(value) + 1;
 });
 
