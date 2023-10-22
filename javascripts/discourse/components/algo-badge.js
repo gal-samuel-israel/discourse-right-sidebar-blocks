@@ -3,6 +3,7 @@ import { tracked } from "@glimmer/tracking";
 import { empty, equal, notEmpty } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
+import User from "discourse/models/user";
 
 export default class AlgoBadge extends Component {
   @service site;
@@ -76,6 +77,12 @@ export default class AlgoBadge extends Component {
     if(this.component_debug){ this.debug = true; } else { this.debug = false; }
 
     var showOnlyForAdmins = false;
+
+    const currentUser = User.current();
+    if(this.component_debug && currentUser.admin && this.debugForAdmins){ this.debug = true; }
+    if(this.component_debug && debugForIDs && debugForIDs.includes(currentUser.id.toString())) { this.debug = true; }
+
+    /*
     //THE OLD WAY
     if (typeof Discourse?.User?.currentProp === 'function' && typeof Discourse?.User?.currentProp('admin') !== 'undefined') {
       if(this.component_debug && Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
@@ -90,6 +97,7 @@ export default class AlgoBadge extends Component {
     } else {
       console.warn('getUser not in discourse/models/user');
     }
+    */
 
     if(this.component_debug && this.debug4All){ this.debug = true; }    
     if(this.debug){ console.log('algoBadge constructor:', this.args?.userId, this.userIdIsSet); }   
