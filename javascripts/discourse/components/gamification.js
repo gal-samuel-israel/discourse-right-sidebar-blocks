@@ -50,6 +50,12 @@ export default class Gamification extends Component {
     
     var groups;
     
+    const currentUser = User.current();
+    if(currentUser.admin && this.debugForAdmins){ this.debug = true; }
+    if(debugForIDs && debugForIDs.includes(currentUser.id.toString())) { this.debug = true; }
+    groups = currentUser.groups;
+
+    /*
     //THE OLD WAY
     if (typeof Discourse?.User?.currentProp === 'function' && typeof Discourse?.User?.currentProp('admin') !== 'undefined') {
       if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
@@ -65,15 +71,10 @@ export default class Gamification extends Component {
     } else {
       console.warn('getUser not in discourse/models/user');
     }
+    */
 
     if (typeof groups !== 'object' && Object.prototype.toString.call(groups) !== '[object Object]') {
       groups = {};
-    }
-
-    if(this.debug){
-      const x_currentUser = User.current();
-      console.log('x_currentUser:', x_currentUser);
-      console.log('this.currentUser:', this.currentUser);
     }
 
     if(this.debug4All){ this.debug = true; }
