@@ -62,11 +62,11 @@ export default class Gamification extends Component {
     var groups;
     
     //THE OLD WAY
-    /*if (typeof Discourse?.User?.currentProp === 'function' && typeof Discourse?.User?.currentProp('admin') !== 'undefined') {
+    if (typeof Discourse?.User?.currentProp === 'function' && typeof Discourse?.User?.currentProp('admin') !== 'undefined') {
       if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
       if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
       groups = Discourse.User.currentProp('groups');      
-    } else*/ if (typeof require?.('discourse/models/user')?.getUser === 'function') {
+    } else if (typeof require?.('discourse/models/user')?.getUser === 'function') {
       //THE NEW WAY
       // Use getUser() method from discourse/models/user
       const { getUser } = require('discourse/models/user');      
