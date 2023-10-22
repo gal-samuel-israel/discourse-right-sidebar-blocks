@@ -3,12 +3,13 @@ import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { popupAjaxError } from "discourse/lib/ajax-error";
-import { registerUnbound } from "discourse-common/lib/helpers";
-
-registerUnbound("inc", function(value){
+//import { registerUnbound } from "discourse-common/lib/helpers"; DEPRECATED 
+//import { registerRawHelper } from "discourse-common/lib/raw-helpers";
+/*
+registerRawHelper("helperIncrement", function(value){
   return parseInt(value) + 1;
 });
-
+*/
 const  checkIfGroupIsInUserGroups = function (group, arrGroups) {
   return arrGroups.some(function(el) {
     return el.name.toLowerCase() === group;
