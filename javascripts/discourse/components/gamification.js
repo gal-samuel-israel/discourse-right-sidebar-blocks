@@ -3,19 +3,8 @@ import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { popupAjaxError } from "discourse/lib/ajax-error";
+import User from "discourse/models/user";
 
-/*
-import { registerUnbound } from "discourse-common/lib/helpers";  
-registerUnbound("helperIncrement", function(value){
-  return parseInt(value) + 1;
-});
-*/
-/*
-import { registerRawHelper } from "discourse-common/lib/helpers";
-registerRawHelper("inc", function(value){
-  return parseInt(value) + 1;
-});
-*/
 const  checkIfGroupIsInUserGroups = function (group, arrGroups) {
   return arrGroups.some(function(el) {
     return el.name.toLowerCase() === group;
@@ -79,6 +68,12 @@ export default class Gamification extends Component {
 
     if (typeof groups !== 'object' && Object.prototype.toString.call(groups) !== '[object Object]') {
       groups = {};
+    }
+
+    if(this.debug){
+      const x_currentUser = User.current();
+      console.log('x_currentUser:', x_currentUser);
+      console.log('this.currentUser:', this.currentUser);
     }
 
     if(this.debug4All){ this.debug = true; }
