@@ -14,7 +14,7 @@
   {{else}}
     {{#each gamificatinObj.users as |item index|}}
       <div class="gamification--user">
-        <span class="gamification--user-index">{{helperIncrement index}}</span>
+        <span class="gamification--user-index">{{inc index}}</span>
         <span data-user-card={{item.username}} class="gamification--user-card">
           {{avatar item imageSize="small"}}
           <span class="limit-username-length" title={{html-safe item.username}}>{{html-safe item.username}}</span>          
@@ -63,7 +63,7 @@
     {{else}}
       {{#each gamificatinObj_2.users as |item index|}}
         <div class="gamification--user">
-          <span class="gamification--user-index">{{helperIncrement index}}</span>
+          <span class="gamification--user-index">{{inc index}}</span>
           <span data-user-card={{item.username}} class="gamification--user-card">
             {{avatar item imageSize="small"}}
             <span class="limit-username-length" title={{html-safe item.username}}>{{html-safe item.username}}</span>          

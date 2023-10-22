@@ -12,7 +12,7 @@ registerUnbound("helperIncrement", function(value){
 */
 
 import { registerRawHelper } from "discourse-common/lib/helpers";
-registerRawHelper("helperIncrement", function(value){
+registerRawHelper("inc", function(value){
   return parseInt(value) + 1;
 });
 
