@@ -60,6 +60,8 @@ export default class CategoryTopics extends Component {
         if (topic.last_read_post_number > 0) {
           topic.url += `/${topic.last_read_post_number}`;
         }
+        // Update the title to remove 'XYZ' string
+        topic.title = topic.title.replace(/Cooking Tips with Jon Ramsey /g, '');  
       });
 
       this.topics = results.slice(0, count);
