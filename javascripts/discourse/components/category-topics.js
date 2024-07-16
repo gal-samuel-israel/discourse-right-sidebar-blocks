@@ -9,11 +9,40 @@ export default class CategoryTopics extends Component {
 
   @tracked topics = null;
   @tracked category = null;
+  @tracked thumb = null;
+
+  debug = false;
+  component_debug = false;
+  debug4All = false;
+  debugForUsers = false;
 
   constructor() {
     super(...arguments);
-    const count = this.args?.params?.count || 10;
-    const categoryId = this.args?.params?.id;
+
+    // set debug from settings 
+    this.component_debug = settings?.enable_debug_for_category_topics_component; //from settings.yml   
+    this.debugForAdmins = settings?.enable_debug_for_admins; //from settings.yml
+    this.debug4All = settings?.enable_debug_for_all; //from settings.yml    
+    this.debugForUsers = settings?.enable_debug_for_user_ids; //from settings.yml
+    var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null;    
+    this.debug = false;
+    
+    if(this.component_debug){ this.debug = true; } else { this.debug = false; }
+
+    const currentUser = User.current();
+    if(this.component_debug && currentUser.admin && this.debugForAdmins){ this.debug = true; }
+    if(this.component_debug && debugForIDs && debugForIDs.includes(currentUser.id.toString())) { this.debug = true; }
+    if(this.component_debug && this.debug4All){ this.debug = true; }    
+    
+    // read params from the Component settings
+    const count = this.args?.params?.count || 10; // count : of topics to show
+    const categoryId = this.args?.params?.id; // id:  of category
+
+    if(this.debug){ 
+      console.log('Category Topics constructor:'); 
+      console.log('count: ', this.count);
+      console.log('categoryId: ', this.categoryId);
+    }  
 
     if (!categoryId) {
       return;
@@ -33,7 +62,14 @@ export default class CategoryTopics extends Component {
       });
 
       this.topics = results.slice(0, count);
+
+      if(this.debug){ 
+        console.log('topics: ', this.topics);
+      }
+
     });
+
+
   }
 
   willDestroy() {

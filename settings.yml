@@ -24,6 +24,10 @@ enable_debug_for_algobadge_component:
   type: bool
   default: false
   description: "enable to get debug info for the AlgoBadge component in Leaderboard Block"
+enable_debug_for_category_topics_component:
+  type: bool
+  default: false
+  description: "enable to get debug info for the Category Topics Block"
 blocks:
   default: >-
     []
