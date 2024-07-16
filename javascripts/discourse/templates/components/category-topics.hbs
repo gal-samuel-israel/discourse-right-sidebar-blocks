@@ -3,10 +3,10 @@
 <div class="category-topics--content">
   {{#each topics as |topic|}}
     <a href={{topic.url}} class="category-topics--topic">
-      {{html-safe (replace-emoji topic.fancy_title)}}
-      <span class="category-topics--posts-count">
+      {{html-safe (replace-emoji topic.title)}}
+      <!-- span class="category-topics--posts-count">
         ({{topic.posts_count}})
-      </span>
+      </span -->
     </a>
   {{/each}}
 </div>
