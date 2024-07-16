@@ -53,7 +53,7 @@ export default class CategoryTopics extends Component {
     this.category = Category.findById(categoryId);
 
     this.store.findFiltered("topicList", { filter }).then((result) => {
-      const results = result.topic_list.topics;
+      var results = result.topic_list.topics;
 
       results.forEach((topic) => {
         topic.url = `${getURL("/t/")}${topic.slug}/${topic.id}`;
