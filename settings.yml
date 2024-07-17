@@ -16,6 +16,10 @@ enable_component_only_for_admins:
   type: bool
   default: false
   description: "disable to make this component visible to Non Admins (All users)"
+enable_debug_for_gamification_component:
+  type: bool
+  default: false
+  description: "enable to get debug info for the Gamification Block"  
 enable_algobadge_component:
   type: bool
   default: true

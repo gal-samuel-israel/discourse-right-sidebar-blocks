@@ -40,6 +40,7 @@ export default class Gamification extends Component {
   constructor() {
     super(...arguments);    
 
+    this.component_debug = settings?.enable_debug_for_gamification_component; //from settings.yml 
     this.showOnlyToAdmins = settings?.enable_component_only_for_admins; //from settings.yml
     this.debugForAdmins = settings?.enable_debug_for_admins; //from settings.yml
     this.debug4All = settings?.enable_debug_for_all; //from settings.yml    
@@ -51,33 +52,15 @@ export default class Gamification extends Component {
     var groups;
     
     const currentUser = User.current();
-    if(currentUser.admin && this.debugForAdmins){ this.debug = true; }
-    if(debugForIDs && debugForIDs.includes(currentUser.id.toString())) { this.debug = true; }
+    if(this.component_debug && currentUser.admin && this.debugForAdmins){ this.debug = true; }
+    if(this.component_debug && debugForIDs && debugForIDs.includes(currentUser.id.toString())) { this.debug = true; }
+    if(this.component_debug && this.debug4All){ this.debug = true; } 
+
     groups = currentUser.groups;
-
-    /*
-    //THE OLD WAY
-    if (typeof Discourse?.User?.currentProp === 'function' && typeof Discourse?.User?.currentProp('admin') !== 'undefined') {
-      if(Discourse.User.currentProp('admin') && this.debugForAdmins){ this.debug = true; }
-      if(debugForIDs && debugForIDs.includes(Discourse.User.currentProp('id').toString())) { this.debug = true; }
-      groups = Discourse.User.currentProp('groups');      
-    } else if (typeof require?.('discourse/models/user')?.getUser === 'function') {
-      //THE NEW WAY
-      // Use getUser() method from discourse/models/user
-      const { getUser } = require('discourse/models/user');      
-      if(getUser().admin && this.debugForAdmins){ this.debug = true; }
-      if(debugForIDs && debugForIDs.includes(getUser().id.toString())) { this.debug = true; }
-      groups = getUser().groups;
-    } else {
-      console.warn('getUser not in discourse/models/user');
-    }
-    */
-
     if (typeof groups !== 'object' && Object.prototype.toString.call(groups) !== '[object Object]') {
       groups = {};
     }
 
-    if(this.debug4All){ this.debug = true; }
     if(this.debug){ 
       console.log('component gamification constructor:'); 
       console.log('User Groups:', groups); 
@@ -179,7 +162,6 @@ export default class Gamification extends Component {
     this.activeMonthly_2 = false; this.activeAll_2 = true;
     this._changePeriod_2('all');    
   }
-
 
   willDestroy() {
     this.gamificatinObj = null;
