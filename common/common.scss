@@ -9,3 +9,5 @@
 /* category-topics elements */
 .category-topics--thumb-wrap img{ width:calc(100% + 2em); position:relative; top:-1em; left:-1em;}
 .category-topics--content a { font-size: 14px;}
+.category-topics--all a{ text-decoration:none; font-size:14px;}
+.category-topics--all a:hover{ text-decoration:underline;}
