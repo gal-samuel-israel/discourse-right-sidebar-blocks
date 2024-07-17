@@ -58,9 +58,9 @@ blocks:
                   "type": "string"
                 },
                 "upload": {
-                  "type": "string",
+                  "type": "upload",
                   "title": "Image Upload",
-                  "description": "Upload an image for the thumb parameter",
+                  "description": "works for thumb params of category-topics only",
                   "inputType": "upload"
                 }
               }

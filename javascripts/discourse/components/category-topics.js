@@ -41,8 +41,8 @@ export default class CategoryTopics extends Component {
 
     if(this.debug){ 
       console.log('Category Topics constructor:'); 
-      console.log('count: ', this.count);
-      console.log('categoryId: ', this.categoryId);
+      console.log('count: ', count);
+      console.log('categoryId: ', categoryId);
     }  
 
     if (!categoryId) {
@@ -71,7 +71,6 @@ export default class CategoryTopics extends Component {
       }
 
     });
-
 
   }
 
