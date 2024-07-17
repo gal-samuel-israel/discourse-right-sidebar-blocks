@@ -6,3 +6,10 @@
     a.popular-tags--tag {background-color: #44ade2;color: #fff;padding: 0.1em 1em;margin: 0 0 0.4em 0;line-height: 2em;border-radius: 2em;word-break: break-word;white-space: nowrap;display: inline-block;border: 1px solid #44ade2;}
     a.popular-tags--tag:hover {color:#44ade2;background-color: #fff;}    
 }
+/* category-topics thumb */
+.category-topics--thumb-wrap img{
+    width:calc(100% + 2em);
+    position:relative;
+    top:-1em;
+    left:-1em;
+}
