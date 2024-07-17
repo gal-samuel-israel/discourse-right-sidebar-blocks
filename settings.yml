@@ -56,13 +56,7 @@ blocks:
                 },
                 "value": {
                   "type": "string"
-                },
-                "upload": {
-                  "type": "upload",
-                  "title": "Image Upload",
-                  "description": "works for thumb params of category-topics only",
-                  "inputType": "upload"
-                }
+                }                
               }
             }
           }
