@@ -19,10 +19,10 @@
   {{/each}}
 </div>
 
-{{#if bottom_link}}
+{{#if bottom_link_label}}
   <div class="category-topics--all">
-    <a href={{concat "/c/" category.slug}}>
-      {{html-safe (bottom_link)}}
+    <a href="/c/{{category.slug}}">
+      {{html-safe (bottom_link_label)}}
     </a>
   </div>
 {{/if}}
