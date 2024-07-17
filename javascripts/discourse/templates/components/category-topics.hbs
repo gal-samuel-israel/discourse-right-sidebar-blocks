@@ -22,7 +22,7 @@
 {{#if all_items_label}}
   <div class="category-topics--all">
     <a href={{concat "/c/" category.slug}}>
-      {{all_items_label}}
+      {{html-safe (all_items_label)}}
     </a>
   </div>
 {{/if}}
