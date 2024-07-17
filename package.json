@@ -1,6 +1,6 @@
 {
   "name": "gsis-right-sidebar-blocks",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "repository": "https://github.com/gal-samuel-israel/discourse-right-sidebar-blocks",
   "author": "Gal SAmuel (based on https://github.com/discourse/discourse-right-sidebar-blocks)",
   "license": "MIT",
