@@ -62,7 +62,10 @@ export default class CategoryTopics extends Component {
       console.log('category: ', this.category);      
     } 
 
-    this.store.findFiltered("topicList", { filter }).then((result) => {
+    this.store.findFiltered("topicList", { 
+      filter,
+      sort: "created_at desc"
+    }).then((result) => {
       var results = result.topic_list.topics;
 
       results.forEach((topic) => {
