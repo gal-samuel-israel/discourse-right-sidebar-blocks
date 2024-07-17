@@ -2,7 +2,7 @@
 
 {{#if thumb}}
   <div class="category-topics--thumb-wrap">
-    <a href={{"/c/"+category.slug}} class="category-topics--thumb">
+    <a href={{concat "/c/" category.slug}} class="category-topics--thumb">
       <img src={{thumb}} title={{category.name}}>
     </a>
   </div>
