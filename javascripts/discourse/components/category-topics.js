@@ -47,7 +47,7 @@ export default class CategoryTopics extends Component {
       console.log('count: ', count);
       console.log('categoryId: ', categoryId);      
       console.log('thumb: ', this.thumb);
-      console.log('all_items_label: ', this.all_items_label);
+      console.log('all_items_label: ', this.all_items_label); //
     }  
 
     if (!categoryId) {
