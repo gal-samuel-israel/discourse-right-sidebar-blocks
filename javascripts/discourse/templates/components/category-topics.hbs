@@ -1,4 +1,10 @@
-{{category-link category}}
+<!-- {{category-link category}} -->
+
+{{#if thumb}}
+  <a href={{getURL "/c/" category.slug}} class="category-topics--thumb">
+    <img src={{thumb}} title={{html-safe (category.title)}}>
+  </a>
+{{/if}}
 
 <div class="category-topics--content">
   {{#each topics as |topic|}}

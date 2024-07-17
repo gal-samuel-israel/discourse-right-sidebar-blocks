@@ -38,11 +38,13 @@ export default class CategoryTopics extends Component {
     // read params from the Component settings
     const count = this.args?.params?.count || 10; // count : of topics to show
     const categoryId = parseInt(this.args?.params?.id, 10); // id:  of category
+    this.thumb = this.args?.params?.thumb || null; // thumb : url string
 
     if(this.debug){ 
       console.log('Category Topics constructor:'); 
       console.log('count: ', count);
       console.log('categoryId: ', categoryId);
+      console.log('thumb: ', this.thumb);
     }  
 
     if (!categoryId) {
