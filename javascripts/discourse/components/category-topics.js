@@ -43,7 +43,7 @@ export default class CategoryTopics extends Component {
     if(this.debug){ 
       console.log('Category Topics constructor:'); 
       console.log('count: ', count);
-      console.log('categoryId: ', categoryId);
+      console.log('categoryId: ', categoryId);      
       console.log('thumb: ', this.thumb);
     }  
 
@@ -53,6 +53,10 @@ export default class CategoryTopics extends Component {
 
     const filter = "c/" + categoryId;
     this.category = Category.findById(categoryId);
+
+    if(this.debug){       
+      console.log('category: ', this.category);      
+    } 
 
     this.store.findFiltered("topicList", { filter }).then((result) => {
       var results = result.topic_list.topics;
