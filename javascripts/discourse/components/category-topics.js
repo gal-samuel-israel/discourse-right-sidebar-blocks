@@ -40,7 +40,7 @@ export default class CategoryTopics extends Component {
     const count = parseInt(this.args?.params?.count,10) || 10; // count : of topics to show
     const categoryId = parseInt(this.args?.params?.id, 10); // id:  of category
     this.thumb = this.args?.params?.thumb || null; // thumb : url string
-    this.all_items_label = this.args?.params?.all_items_label; // all_items_label : text for the all items label
+    this.all_items_label = this.args?.params?.all_items_label || null; // all_items_label : text for the all items label
 
     if(this.debug){ 
       console.log('Category Topics constructor:'); 
