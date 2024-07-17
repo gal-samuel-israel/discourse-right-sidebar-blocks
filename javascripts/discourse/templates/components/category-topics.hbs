@@ -1,9 +1,11 @@
 <!-- {{category-link category}} -->
 
 {{#if thumb}}
-  <a href={{getURL "/c/" category.slug}} class="category-topics--thumb">
-    <img src={{thumb}} title={{category.name}}>
-  </a>
+  <div class="category-topics--thumb">
+    <a href={{getURL "/c/" category.slug}} class="category-topics--thumb">
+      <img src={{thumb}} title={{category.name}}>
+    </a>
+  </div>
 {{/if}}
 
 <div class="category-topics--content">
