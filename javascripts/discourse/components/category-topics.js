@@ -8,8 +8,8 @@ import User from "discourse/models/user";
 export default class CategoryTopics extends Component {
   @service store;
 
-  topics = null;
-  category = null;
+  @tracked topics = null;
+  @tracked category = null;
   thumb = null;
   all_text_label = null;
 
