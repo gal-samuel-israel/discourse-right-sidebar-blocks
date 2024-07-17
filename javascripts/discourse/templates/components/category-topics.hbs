@@ -18,3 +18,11 @@
     </a>
   {{/each}}
 </div>
+
+{{#if all_text_label}}
+  <div class="category-topics--all">
+    <a href={{concat "/c/" category.slug}}>
+      {{all_text_label}}
+    </a>
+  </div>
+{{/if}}
