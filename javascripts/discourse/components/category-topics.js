@@ -39,11 +39,12 @@ export default class CategoryTopics extends Component {
     // read params from the Component settings
     const count = this.args?.params?.count !== undefined ? parseInt(this.args?.params?.count,10) : 10; /* count : of topics to show */
     const categoryId = this.args?.params !== undefined ? parseInt(this.args?.params?.id, 10) : null; /* id:  of category */
-    //this.thumb = this.args?.params?.thumb !== undefined ? this.args?.params?.thumb : null; /* thumb : url string */
+    this.thumb = this.args?.params?.thumb !== undefined ? this.args?.params?.thumb : null; /* thumb : url string */
     //this.bottom_link = this.args?.params?.bottom_link !== undefined ? this.args?.params?.bottom_link : null; /* bottom_link : text for the all items label */
 
     if(this.debug){ 
       console.log('Category Topics constructor:'); 
+      console.log('args:', this.args); 
       console.log('count: ', count);
       console.log('categoryId: ', categoryId);      
       console.log('thumb: ', this.thumb);
