@@ -11,7 +11,7 @@ export default class CategoryTopics extends Component {
   @tracked topics = null;
   @tracked category = null;
   @tracked thumb = null;
-  @tracked all_items_label = null;
+  @tracked bottom_link = null;
 
   debug = false;
   component_debug = false;
@@ -37,17 +37,17 @@ export default class CategoryTopics extends Component {
     if(this.component_debug && this.debug4All){ this.debug = true; }    
     
     // read params from the Component settings
-    const count = parseInt(this.args?.params?.count,10) || 10; // count : of topics to show
-    const categoryId = parseInt(this.args?.params?.id, 10); // id:  of category
+    const count = this.args?.params?.count !== undefined ? parseInt(this.args?.params?.count,10) : 10; // count : of topics to show
+    const categoryId = this.args?.params !== undefined ? parseInt(this.args?.params?.id, 10):{}; // id:  of category
     this.thumb = this.args?.params?.thumb !== undefined ? this.args?.params?.thumb : {}; // thumb : url string
-    this.all_items_label = this.args?.params?.all_items_label !== undefined ? this.args.params.all_items_label : {}; // all_items_label : text for the all items label
+    this.bottom_link = this.args?.params?.bottom_link !== undefined ? this.args.params.bottom_link : {}; // bottom_link : text for the all items label
 
     if(this.debug){ 
       console.log('Category Topics constructor:'); 
       console.log('count: ', count);
       console.log('categoryId: ', categoryId);      
       console.log('thumb: ', this.thumb);
-      console.log('all_items_label: ', this.all_items_label); 
+      console.log('bottom_link: ', this.bottom_link); 
     }  
 
     if (!categoryId) {
