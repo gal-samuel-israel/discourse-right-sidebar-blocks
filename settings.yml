@@ -56,6 +56,12 @@ blocks:
                 },
                 "value": {
                   "type": "string"
+                },
+                "upload": {
+                  "type": "string",
+                  "title": "Image Upload",
+                  "description": "Upload an image for the thumb parameter",
+                  "inputType": "upload"
                 }
               }
             }
