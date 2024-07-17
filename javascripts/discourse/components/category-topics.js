@@ -37,7 +37,7 @@ export default class CategoryTopics extends Component {
     
     // read params from the Component settings
     const count = this.args?.params?.count || 10; // count : of topics to show
-    const categoryId = this.args?.params?.id; // id:  of category
+    const categoryId = parseInt(this.args?.params?.id, 10); // id:  of category
 
     if(this.debug){ 
       console.log('Category Topics constructor:'); 
