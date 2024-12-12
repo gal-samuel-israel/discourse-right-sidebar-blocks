@@ -1,1 +1,87 @@
-{{ gamification model=model }}
+<div class="gamification-info-link"><a href="/t/community-leaderboard/178" title="About the Community Leaderboard"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path> <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path></svg></a></div>
+<h3 class="gamification-heading">
+  {{#if this.isAlgoSecUser}}AlgoSec {{/if}}{{theme-i18n "gamification.heading"}}
+</h3>
+
+<div class="gamification-controls-wrap">
+  <a href {{on "click" this.scoreForMonth}} class="gamification-control {{if this.activeMonthly "active" ""}}">Last 30 days</a>
+  <a href {{on "click" this.scoreForAll}} class="gamification-control {{if this.activeAll "active" ""}}">All time</a>
+</div>
+
+<div class="gamification--container">
+  {{#if this.loading}}
+    <div class="gamification-loader">Loading</div>
+  {{else}}
+    {{#each this.gamificatinObj.users as |item index|}}
+      <div class="gamification--user">
+        <span class="gamification--user-index">{{inc index}}</span>
+        <span data-user-card={{item.username}} class="gamification--user-card">
+          {{avatar item imageSize="small"}}
+          <span class="limit-username-length" title={{html-safe item.username}}>{{html-safe item.username}}</span>          
+        </span>
+        <span class="gamification--user-score">
+          <AlgoBadge @userId={{item.id}} />
+          <svg width="16" height="22" viewBox="0 0 16 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="gamification--user-badge">
+            <path d="M8.14877 8.88745C5.28709 8.88745 2.95892 11.2144 2.95892 14.0741C2.95892 16.9339 5.28709 19.2612 8.14877 19.2612C11.0104 19.2612 13.3386 16.9343 13.3386 14.0741C13.3386 11.214 11.0104 8.88745 8.14877 8.88745ZM10.6785 13.893L9.73509 14.8122L9.95764 16.1099C10.0196 16.4715 9.64024 16.7474 9.31505 16.5768L8.14877 15.964L6.98248 16.5768C6.65797 16.747 6.2779 16.4718 6.33989 16.1099L6.56245 14.8122L5.61905 13.893C5.35619 13.6364 5.50219 13.1908 5.86464 13.1377L7.16845 12.9484L7.75176 11.7679C7.913 11.4402 8.38351 11.4375 8.54611 11.7679L9.12908 12.9484L10.4332 13.1377C10.7957 13.1908 10.9417 13.636 10.6788 13.893H10.6785Z" fill="#000000"/>
+            <path d="M15.5903 13.0317C15.1174 12.4206 14.9165 11.7895 14.9961 11.0562C15.0774 10.3111 14.6442 9.60855 13.944 9.34041C13.2953 9.09191 12.8499 8.69207 12.5894 8.06981C12.2933 7.36121 11.5488 6.94851 10.7913 7.07953C10.1047 7.19836 9.51835 7.07242 8.97603 6.64347C8.34665 6.14545 7.45373 6.16949 6.85416 6.70238C6.34571 7.15401 5.81422 7.34326 5.18586 7.25084C4.38677 7.13336 3.62393 7.60564 3.3719 8.37281C3.18526 8.94159 2.84143 9.31129 2.29098 9.50732C1.53119 9.77782 1.07422 10.5656 1.22767 11.3572C1.34556 11.9642 1.20159 12.4738 0.778504 12.9467C0.230083 13.5602 0.225341 14.4899 0.76631 15.1098C1.18432 15.5881 1.3171 16.1071 1.1938 16.7237C1.03561 17.5159 1.48004 18.2952 2.23712 18.5786C2.79604 18.7878 3.14359 19.1762 3.33837 19.7632C3.58937 20.5199 4.33833 20.9888 5.12895 20.8835C5.78238 20.7962 6.33724 20.9976 6.87245 21.4604C7.46762 21.9757 8.33581 21.9977 8.95909 21.5166C9.53021 21.0755 10.143 20.94 10.8567 21.0511C11.6013 21.1669 12.3221 20.7613 12.6161 20.0679C12.8898 19.4216 13.3458 18.9991 14.0107 18.734C14.6906 18.4625 15.1099 17.7681 15.0273 17.0412C14.9419 16.292 15.1289 15.6464 15.6004 15.0251C16.0483 14.435 16.0439 13.6174 15.5903 13.0317ZM12.2713 18.195C11.1704 19.2957 9.70601 19.9017 8.14848 19.9017C6.59096 19.9017 5.12692 19.2957 4.02567 18.195C2.92443 17.0944 2.31774 15.6308 2.31774 14.0744C2.31774 12.5181 2.92443 11.0549 4.02567 9.95387C5.12658 8.85323 6.59096 8.24721 8.14848 8.24721C9.70601 8.24721 11.1701 8.85323 12.2713 9.95387C13.3725 11.0545 13.9792 12.5181 13.9792 14.0744C13.9792 15.6308 13.3725 17.0944 12.2713 18.195Z" fill="#000000"/>
+            <path d="M12.7625 1.03985V6.94394C12.2233 6.39447 11.4364 6.12023 10.6315 6.25837C10.1143 6.34808 9.76096 6.24313 9.42459 5.97703C8.50864 5.25251 7.19805 5.27926 6.31495 6.06437C5.7059 6.60505 5.37698 6.4009 4.91392 6.4009C4.38278 6.4009 3.88347 6.57288 3.47766 6.87251V1.03985C3.47766 0.510689 3.90854 0.0803833 4.43765 0.0803833H11.8022C12.3317 0.0803833 12.7622 0.511027 12.7622 1.03985H12.7625Z" fill="#000000"/>
+          </svg> {{item.total_score}}
+        </span>
+      </div>
+    {{/each}}
+  {{/if}}
+</div>
+
+{{#if this.isAlgoSecUser}}
+<a href='{{theme-i18n "gamification.view_all_link_algosec_only"}}' class="gamification--view-all {{if (theme-i18n "gamification.view_all_link_algosec_only") "show-link" "hide-link"}}" >
+  {{theme-i18n "gamification.view_all_tag"}} {{d-icon "angle-right"}}
+</a>
+{{else}}
+<a href='{{theme-i18n "gamification.view_all_link"}}' class="gamification--view-all {{if (theme-i18n "gamification.view_all_link") "show-link" "hide-link"}}" >
+  {{theme-i18n "gamification.view_all_tag"}} {{d-icon "angle-right"}}
+</a>
+{{/if}}
+
+<a href='{{theme-i18n "gamification.view_all_badges_link"}}' class="gamification--view-badges {{if (theme-i18n "gamification.view_all_badges_link") "show-link" "hide-link"}}">
+  {{theme-i18n "gamification.view_all_badges_tag"}}
+</a>
+
+{{#if this.isAlgoSecUser}}
+  <hr>
+  <h3 class="gamification-heading">
+    {{#if this.isAlgoSecUser}}Users {{/if}}{{theme-i18n "gamification.heading"}}
+  </h3>
+
+  <div class="gamification-controls-wrap">
+    <a href {{on "click" this.scoreForMonth_2}} class="gamification-control {{if this.activeMonthly_2 "active" ""}}">Last 30 days</a>
+    <a href {{on "click" this.scoreForAll_2}} class="gamification-control {{if this.activeAll_2 "active" ""}}">All time</a>
+  </div>
+
+  <div class="gamification--container">
+    {{#if this.loading_2}}
+      <div class="gamification-loader">Loading</div>
+    {{else}}
+      {{#each this.gamificatinObj_2.users as |item index|}}
+        <div class="gamification--user">
+          <span class="gamification--user-index">{{inc index}}</span>
+          <span data-user-card={{item.username}} class="gamification--user-card">
+            {{avatar item imageSize="small"}}
+            <span class="limit-username-length" title={{html-safe item.username}}>{{html-safe item.username}}</span>          
+          </span>
+          <span class="gamification--user-score">
+            <AlgoBadge @userId={{item.id}} />
+            <svg width="16" height="22" viewBox="0 0 16 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="gamification--user-badge">
+              <path d="M8.14877 8.88745C5.28709 8.88745 2.95892 11.2144 2.95892 14.0741C2.95892 16.9339 5.28709 19.2612 8.14877 19.2612C11.0104 19.2612 13.3386 16.9343 13.3386 14.0741C13.3386 11.214 11.0104 8.88745 8.14877 8.88745ZM10.6785 13.893L9.73509 14.8122L9.95764 16.1099C10.0196 16.4715 9.64024 16.7474 9.31505 16.5768L8.14877 15.964L6.98248 16.5768C6.65797 16.747 6.2779 16.4718 6.33989 16.1099L6.56245 14.8122L5.61905 13.893C5.35619 13.6364 5.50219 13.1908 5.86464 13.1377L7.16845 12.9484L7.75176 11.7679C7.913 11.4402 8.38351 11.4375 8.54611 11.7679L9.12908 12.9484L10.4332 13.1377C10.7957 13.1908 10.9417 13.636 10.6788 13.893H10.6785Z" fill="#000000"/>
+              <path d="M15.5903 13.0317C15.1174 12.4206 14.9165 11.7895 14.9961 11.0562C15.0774 10.3111 14.6442 9.60855 13.944 9.34041C13.2953 9.09191 12.8499 8.69207 12.5894 8.06981C12.2933 7.36121 11.5488 6.94851 10.7913 7.07953C10.1047 7.19836 9.51835 7.07242 8.97603 6.64347C8.34665 6.14545 7.45373 6.16949 6.85416 6.70238C6.34571 7.15401 5.81422 7.34326 5.18586 7.25084C4.38677 7.13336 3.62393 7.60564 3.3719 8.37281C3.18526 8.94159 2.84143 9.31129 2.29098 9.50732C1.53119 9.77782 1.07422 10.5656 1.22767 11.3572C1.34556 11.9642 1.20159 12.4738 0.778504 12.9467C0.230083 13.5602 0.225341 14.4899 0.76631 15.1098C1.18432 15.5881 1.3171 16.1071 1.1938 16.7237C1.03561 17.5159 1.48004 18.2952 2.23712 18.5786C2.79604 18.7878 3.14359 19.1762 3.33837 19.7632C3.58937 20.5199 4.33833 20.9888 5.12895 20.8835C5.78238 20.7962 6.33724 20.9976 6.87245 21.4604C7.46762 21.9757 8.33581 21.9977 8.95909 21.5166C9.53021 21.0755 10.143 20.94 10.8567 21.0511C11.6013 21.1669 12.3221 20.7613 12.6161 20.0679C12.8898 19.4216 13.3458 18.9991 14.0107 18.734C14.6906 18.4625 15.1099 17.7681 15.0273 17.0412C14.9419 16.292 15.1289 15.6464 15.6004 15.0251C16.0483 14.435 16.0439 13.6174 15.5903 13.0317ZM12.2713 18.195C11.1704 19.2957 9.70601 19.9017 8.14848 19.9017C6.59096 19.9017 5.12692 19.2957 4.02567 18.195C2.92443 17.0944 2.31774 15.6308 2.31774 14.0744C2.31774 12.5181 2.92443 11.0549 4.02567 9.95387C5.12658 8.85323 6.59096 8.24721 8.14848 8.24721C9.70601 8.24721 11.1701 8.85323 12.2713 9.95387C13.3725 11.0545 13.9792 12.5181 13.9792 14.0744C13.9792 15.6308 13.3725 17.0944 12.2713 18.195Z" fill="#000000"/>
+              <path d="M12.7625 1.03985V6.94394C12.2233 6.39447 11.4364 6.12023 10.6315 6.25837C10.1143 6.34808 9.76096 6.24313 9.42459 5.97703C8.50864 5.25251 7.19805 5.27926 6.31495 6.06437C5.7059 6.60505 5.37698 6.4009 4.91392 6.4009C4.38278 6.4009 3.88347 6.57288 3.47766 6.87251V1.03985C3.47766 0.510689 3.90854 0.0803833 4.43765 0.0803833H11.8022C12.3317 0.0803833 12.7622 0.511027 12.7622 1.03985H12.7625Z" fill="#000000"/>
+            </svg> {{item.total_score}}
+          </span>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+
+  <a href='{{theme-i18n "gamification.view_all_link"}}' class="gamification--view-all {{if (theme-i18n "gamification.view_all_link") "show-link" "hide-link"}}" >
+    {{theme-i18n "gamification.view_all_tag"}} {{d-icon "angle-right"}}
+  </a>
+{{/if}}
