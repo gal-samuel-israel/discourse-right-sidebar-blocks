@@ -61,7 +61,7 @@
     {{#if this.loading_2}}
       <div class="gamification-loader">Loading</div>
     {{else}}
-      {{#each gamificatinObj_2.users as |item index|}}
+      {{#each this.gamificatinObj_2.users as |item index|}}
         <div class="gamification--user">
           <span class="gamification--user-index">{{inc index}}</span>
           <span data-user-card={{item.username}} class="gamification--user-card">
