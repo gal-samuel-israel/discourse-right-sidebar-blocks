@@ -3,13 +3,13 @@
 {{#if this.thumb}}
   <div class="category-topics--thumb-wrap">
     <a href={{concat "/c/" this.category.slug}} class="category-topics--thumb">
-      <img src={{thumb}} title={{this.category.name}}>
+      <img src={{this.thumb}} title={{this.category.name}}>
     </a>
   </div>
 {{/if}}
 
 <div class="category-topics--content">
-  {{#each topics as |topic|}}
+  {{#each this.topics as |topic|}}
     <a href={{topic.url}} class="category-topics--topic">
       {{html-safe (replace-emoji topic.title)}}
       <!-- span>
@@ -22,7 +22,7 @@
 {{#if all_text_label}}
   <div class="category-topics--all">
     <a href={{concat "/c/" this.category.slug}}>
-      {{all_text_label}} {{d-icon "angle-right"}}
+      {{this.all_text_label}} {{d-icon "angle-right"}}
     </a>
   </div>
 {{/if}}
