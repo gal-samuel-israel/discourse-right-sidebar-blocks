@@ -7,22 +7,12 @@ registerRawHelper("inc", incHelperFunction);
 export default function incHelperFunction(value) {
     return parseInt(value) + 1;
 }
+
+GAL: replaced by this code and /common/assets.json was added
 */
-import { registerHelper } from "@ember/template/helpers";
-//import { htmlSafe } from "@ember/template";
 
-function incHelperFunction(value/*, options*/) {
-  const result = parseInt(value, 10) + 1;
-  return result; // Simple number case
-  // return htmlSafe(result.toString()); // Only if you need HTML output
-}
+import { helper } from "@ember/component/helper";
 
-// Export both the function and initializer
-export { incHelperFunction };
-
-export default {
-  name: "inc-helper",
-  initialize(container) {
-    registerHelper("inc", incHelperFunction);
-  }
-};
+export default helper(function inc([value]) {
+  return parseInt(value, 10) + 1;
+});
