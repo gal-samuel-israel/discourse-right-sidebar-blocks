@@ -2,7 +2,7 @@ import Category from "discourse/models/category";
 import getURL from "discourse-common/lib/get-url";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { inject as service } from "@ember/service";
+import { service } from "@ember/service";
 import User from "discourse/models/user";
 
 export default class CategoryTopics extends Component {
