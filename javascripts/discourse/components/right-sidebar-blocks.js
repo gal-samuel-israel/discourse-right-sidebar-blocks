@@ -1,6 +1,7 @@
 import Component from "@glimmer/component";
 import { getOwner } from "@ember/application";
 import { tracked } from "@glimmer/tracking";
+import CustomHtmlRsb from "./custom-html-rsb";
 
 export default class RightSidebarBlocks extends Component {
   @tracked blocks = [];
@@ -12,8 +13,18 @@ export default class RightSidebarBlocks extends Component {
 
     const blocksArray = [];
 
-    JSON.parse(settings.blocks).forEach((block) => {
-      if (getOwner(this).hasRegistration(`component:${block.name}`)) {
+    JSON.parse(settings.blocks).forEach((block) => {      
+      if (block.name === "custom-html") {
+        block.classNames = `rs-component rs-${block.name}`;
+        block.component = CustomHtmlRsb;
+        block.parsedParams = {};
+        if (block.params) {
+          block.params.forEach((p) => {
+            block.parsedParams[p.name] = p.value;
+          });
+        }
+        blocksArray.push(block);
+      } else if (getOwner(this).hasRegistration(`component:${block.name}`)) {
         block.classNames = `rs-component rs-${block.name}`;
         block.parsedParams = {};
         if (block.params) {
@@ -21,9 +32,6 @@ export default class RightSidebarBlocks extends Component {
             block.parsedParams[p.name] = p.value;
           });
         }
-        
-        //console.log(`Block "${block.name}" parsedParams:`, block.parsedParams);
-        
         blocksArray.push(block);
       } else {
         // eslint-disable-next-line no-console
