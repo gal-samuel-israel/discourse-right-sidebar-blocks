@@ -1,10 +1,12 @@
 import Component from "@glimmer/component";
-import { htmlSafe } from "@ember/template";
 import { tracked } from "@glimmer/tracking";
+import { htmlSafe } from "@ember/template";
 import { service } from "@ember/service";
+
 export default class CustomHtml extends Component {
     @tracked content = null;
     @service site;
+
     constructor() {
         super(...arguments);
         // debug: log site settings blocks since Discourse no longer exposes settings globally
@@ -16,10 +18,10 @@ export default class CustomHtml extends Component {
         console.warn('custom-html this.args:', this.args);
         console.warn('custom-html this.args.params:', this.args?.params);
         console.warn('custom-html this.args.params.content:', this.args?.params?.content);
-        
     }
 
     willDestroy() {
+        super.willDestroy(...arguments);
         this.content = null;
     }
 }
