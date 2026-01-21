@@ -1,9 +1,9 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-
+import { service } from "@ember/service";
 export default class CustomHtml extends Component {
     @tracked content = null;
-    
+    @service site;
     constructor() {
         super(...arguments);
               

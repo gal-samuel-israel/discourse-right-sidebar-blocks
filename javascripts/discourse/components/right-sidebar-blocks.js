@@ -21,7 +21,7 @@ export default class RightSidebarBlocks extends Component {
           });
         }
         
-        console.log(`Block "${block.name}" parsedParams:`, block.parsedParams);
+        //console.log(`Block "${block.name}" parsedParams:`, block.parsedParams);
         
         blocksArray.push(block);
       } else {
