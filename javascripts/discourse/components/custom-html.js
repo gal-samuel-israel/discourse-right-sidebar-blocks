@@ -1,4 +1,5 @@
 import Component from "@glimmer/component";
+import { htmlSafe } from '@ember/template';
 import { tracked } from "@glimmer/tracking";
 import { service } from "@ember/service";
 export default class CustomHtml extends Component {
@@ -7,7 +8,8 @@ export default class CustomHtml extends Component {
     constructor() {
         super(...arguments);
               
-        this.content = this.args?.params?.content;
+        const rawContent = this.args?.params?.content;
+        this.content = rawContent ? htmlSafe(rawContent) : null;
 
         console.log('custom-html constructor called');
         console.log('custom-html this.args:', this.args);
