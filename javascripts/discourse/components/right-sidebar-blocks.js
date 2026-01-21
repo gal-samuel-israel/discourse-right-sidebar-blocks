@@ -4,8 +4,10 @@ import { tracked } from "@glimmer/tracking";
 
 export default class RightSidebarBlocks extends Component {
   @tracked blocks = [];
+  debugForAdmins = false;
 
   constructor() {
+    this.debugForAdmins = settings?.enable_debug_for_admins; //from settings.yml
     super(...arguments);
 
     const blocksArray = [];
@@ -18,6 +20,9 @@ export default class RightSidebarBlocks extends Component {
           block.params.forEach((p) => {
             block.parsedParams[p.name] = p.value;
           });
+        }
+        if (this.debugForAdmins) {
+          console.log(`Block "${block.name}" parsedParams:`, block.parsedParams);
         }
         blocksArray.push(block);
       } else {
