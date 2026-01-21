@@ -1,7 +1,6 @@
 import Component from "@glimmer/component";
 import { getOwner } from "@ember/application";
 import { tracked } from "@glimmer/tracking";
-import CustomHtmlRsb from "./custom-html-rsb";
 
 export default class RightSidebarBlocks extends Component {
   @tracked blocks = [];
