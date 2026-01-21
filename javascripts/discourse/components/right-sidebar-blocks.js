@@ -8,7 +8,7 @@ export default class RightSidebarBlocks extends Component {
   constructor() {
     
     super(...arguments);
-    console.warn('right-sidebar-blocks settings.blocks:', settings.blocks);
+    // console.warn('right-sidebar-blocks settings.blocks:', settings.blocks);
 
     const blocksArray = [];
 
