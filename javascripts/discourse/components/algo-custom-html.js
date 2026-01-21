@@ -3,7 +3,7 @@ import { tracked } from "@glimmer/tracking";
 import { htmlSafe } from "@ember/template";
 import { service } from "@ember/service";
 
-export default class CustomHtml extends Component {
+export default class AlgoCustomHtml extends Component {
     @tracked content = null;
     @service site;
 

@@ -14,17 +14,7 @@ export default class RightSidebarBlocks extends Component {
     const blocksArray = [];
 
     JSON.parse(settings.blocks).forEach((block) => {      
-      if (block.name === "custom-html") {
-        block.classNames = `rs-component rs-${block.name}`;
-        block.component = CustomHtmlRsb;
-        block.parsedParams = {};
-        if (block.params) {
-          block.params.forEach((p) => {
-            block.parsedParams[p.name] = p.value;
-          });
-        }
-        blocksArray.push(block);
-      } else if (getOwner(this).hasRegistration(`component:${block.name}`)) {
+      if (getOwner(this).hasRegistration(`component:${block.name}`)) {
         block.classNames = `rs-component rs-${block.name}`;
         block.parsedParams = {};
         if (block.params) {
