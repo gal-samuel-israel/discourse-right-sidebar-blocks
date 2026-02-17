@@ -67,13 +67,16 @@ export default class PopularTags extends Component {
       .slice(0, count)
       .map((tag) => {
         const name =
-          typeof tag === "string" ? tag : tag?.text || tag?.name || null;
+          typeof tag === "string" ? tag : tag?.name || tag?.text || null;
+        const slug =
+          typeof tag === "object" ? tag?.slug || null : null;
         const id = typeof tag === "object" ? tag?.id : null;
+        const encodedSlug = slug ? encodeURIComponent(slug) : null;
         const encodedName = name ? encodeURIComponent(name) : null;
         const hasId = id !== null && id !== undefined;
         const urlPath =
-          encodedName && hasId
-            ? `/tag/${encodedName}/${id}`
+          encodedSlug && hasId
+            ? `/tag/${encodedSlug}/${id}`
             : encodedName
               ? `/tag/${encodedName}`
               : null;
