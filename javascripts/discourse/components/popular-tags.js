@@ -59,13 +59,31 @@ export default class PopularTags extends Component {
     const count = this.args?.params?.count || 10;
     const rawTags = this.site.get("top_tags") || [];
 
-    this.topTags = rawTags.slice(0, count).map((tag) => {
-      const name = typeof tag === "string" ? tag : tag?.id || tag?.name || tag?.text;
-      return {
-        name,
-        url: name ? getURL(`/tag/${name}`) : null,
-      };
-    }).filter((tag) => tag.name && tag.url);
+    if (this.debug && rawTags.length) {
+      console.log("popular-tags rawTags:", rawTags);
+    }
+
+    this.topTags = rawTags
+      .slice(0, count)
+      .map((tag) => {
+        const name =
+          typeof tag === "string" ? tag : tag?.text || tag?.name || null;
+        const id = typeof tag === "object" ? tag?.id : null;
+        const encodedName = name ? encodeURIComponent(name) : null;
+        const hasId = id !== null && id !== undefined;
+        const urlPath =
+          encodedName && hasId
+            ? `/tag/${encodedName}/${id}`
+            : encodedName
+              ? `/tag/${encodedName}`
+              : null;
+
+        return {
+          name,
+          url: urlPath ? getURL(urlPath) : null,
+        };
+      })
+      .filter((tag) => tag.name && tag.url);
 
     if (!this.topTags.length) {
       this.topTags = null;
