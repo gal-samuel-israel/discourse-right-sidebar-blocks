@@ -1,32 +1,40 @@
 # Right Sidebar Blocks
 
-Adds ability to display a right-sided sidebar to topic list routes. There are two settings included:
+Adds a configurable right sidebar to topic list routes.
 
-- `blocks`: choose the blocks to display and adjust their ordering
-- `show_in_routes`: decide which routes to display the sidebar (by default, it will show on all discovery routes except for `/categories`)
+## Core settings
 
-### Included blocks
+- `blocks`: choose which blocks to render and their order.
+- `show_in_routes`: limit sidebar rendering to specific routes. When empty, the sidebar is shown on all topic list routes.
 
-This theme component includes a few blocks you can use in your sidebar:
+## Included blocks
 
-- popular-tags
-- top-contributors
-- recent-replies
-- category-topics
-- custom-html
-- subcategory-list
-- gamification
+- `popular-tags`
+- `top-contributors`
+- `recent-replies`
+- `category-topics`
+- `custom-html`
+- `subcategory-list`
+- `gamification`
 
-You can also use other Ember components as blocks, you just need to use the correct name. For example, core includes a `signup-cta` Ember component, and you can use it in the sidebar as is. (Note that you can't use components that expect a set of parameters.)
+You can also use other Ember components as blocks by name (for example, core `signup-cta`), as long as they do not require unsupported parameters.
 
-### Available block parameters
+## Available block parameters
 
-You can control some features for the provided blocks via parameters.
+| name | description | default | available for |
+| --- | --- | --- | --- |
+| `count` | Limit number of results | varies | `popular-tags`, `category-topics`, `recent-replies`, `top-contributors`, `gamification` |
+| `excerptLimit` | Limit reply excerpt length | `150` | `recent-replies` |
+| `id` | Category ID | none | `category-topics` |
+| `displayInCategories` | Comma-separated parent category IDs (when omitted, shown for all parent categories with subcategories) | none | `subcategory-list` |
+| `content` | HTML content to render in the block | none | `custom-html` |
 
-| name                | description                                                                                                                       | default | available for                                                            |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------ |
-| count               | limits number of results                                                                                                          | varies  | popular-tags<br/>category-topics<br/>recent-replies<br/>top-contributors<br/>gamification |
-| excerptLimit        | limits length of each reply excerpt                                                                                               | 150     | recent-replies                                                           |
-| id                  | category id                                                                                                                       |         | category-topics                                                          |
-| displayInCategories | comma-separated list of parent category ids (when omitted, the block will be displayed in all  categories with subcategories) |         | subcategory-list                                                         |
-| content             | for the content                                  | | custom-html|
+## Popular Tags visibility and debug
+
+The `popular-tags` block supports component-specific visibility/debug controls in theme settings:
+
+- `enable_debug_for_popular_tags_component`
+- `enable_popular_tags_only_for_selected_users`
+- `popular_tags_visible_user_ids`
+
+When `enable_popular_tags_only_for_selected_users` is enabled, the block is shown only to user IDs listed in `popular_tags_visible_user_ids`.

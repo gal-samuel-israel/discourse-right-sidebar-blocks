@@ -32,6 +32,20 @@ enable_debug_for_category_topics_component:
   type: bool
   default: false
   description: "Enable to get debug info for the Category Topics Block"
+enable_debug_for_popular_tags_component:
+  type: bool
+  default: false
+  description: "Enable to get debug info for the Popular Tags Block"
+enable_popular_tags_only_for_selected_users:
+  type: bool
+  default: false
+  description: "Enable to show Popular Tags block only to the selected user IDs"
+popular_tags_visible_user_ids:
+  type: list
+  default: "2|42"
+  list_type: simple
+  regex: "^\\d+$"
+  description: "User IDs allowed to see Popular Tags when selected-users-only is enabled"
 blocks:
   default: >-
     []
