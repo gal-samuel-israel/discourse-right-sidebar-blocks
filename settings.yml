@@ -24,6 +24,10 @@ enable_algobadge_component:
   type: bool
   default: true
   description: "Enable to have AlgoBadge component in Leaderboard Block"  
+use_badges_explorer_api:
+  type: bool
+  default: true
+  description: "When true use Data Explorer query 11 for AlgoBadge; when false use the core user-badges API"
 enable_debug_for_algobadge_component:
   type: bool
   default: false
