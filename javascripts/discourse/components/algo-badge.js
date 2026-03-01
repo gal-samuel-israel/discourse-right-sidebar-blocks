@@ -1,6 +1,6 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { empty, equal, notEmpty } from "@ember/object/computed";
+import { notEmpty } from "@ember/object/computed";
 import { service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
 import User from "discourse/models/user";
@@ -13,8 +13,6 @@ const EXPLORER_BADGE_IDS = [
 export default class AlgoBadge extends Component {
   @service site;
   
-  @notEmpty("args.userId")
-  userIdIsSet;
   @notEmpty("args.username")
   usernameIsSet;
 
@@ -30,45 +28,6 @@ export default class AlgoBadge extends Component {
   showOnlyToAdmins = false;
   debug4All = false;
   debugForUsers = false;
-  useBadgesExplorerApi = true;
-
-  objectifyResponse(response){    
-    var info = {};
-    var keys = response.columns;
-    var values = response.rows[0];
-    for(var i = 0; i < keys.length; i++){ info[keys[i]] = values[i]; }
-    //if(this.debug){console.log('objectifyResponse: ',info);} 
-    return info;
-  }
-
-  async getUserAlgoBadgeWithExplorer(user_id){ 
-    if(this.debug){console.log('getUserAlgoBadgeWithExplorer: '+ user_id);}  
-    return ajax(`/admin/plugins/discourse-data-explorer/queries/11/run`, { // was /explorer/
-      type: "POST",
-      headers: { "Api-Username": "system", "Api-Key": "d0082b555db3459e85fee2d29b29b79edc689d8767a80fef33761ef16869d83c" }, //Data Explorer Ready Only - query 11
-      data: {"params": "{\"user_id\": \""+user_id+"\"}"}
-    })
-    .then((response) => {        
-        //if(this.debug){console.log(response);}    
-        if (response?.rows?.length !== 0) {
-          var obj = this.objectifyResponse(response);          
-          //TEST LOOP SOURCE//if(this.debug){console.log(obj);}
-          /* {
-            "user_id": 35,
-            "badges": "[\"111,Apprentice\"]",
-            "image_upload_id": "[145]",
-            "urls": "[\"//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/business20/uploads/algosec/original/1X/f716bd5a19db9db7aa93cba8eb0406405ba98e8e.png\"]"
-          } */
-          this.algoBadgeInfo = true;
-          let badges = JSON.parse(obj.badges);
-          let badgeArr = badges[0].split(',');
-          this.algoBadgeName = badgeArr[1];  
-          let urls = JSON.parse(obj.urls);        
-          this.algoBadgeUrl = urls[0];
-          this.algoBadgeGrants = '/badges/'+badgeArr[0]+'/apprentice';
-        } 
-    });
-  }
 
   async getUserAlgoBadgeWithCoreApi(username){
     if(this.debug){console.log('getUserAlgoBadgeWithCoreApi: '+ username);}
@@ -127,14 +86,10 @@ export default class AlgoBadge extends Component {
       });
   }
 
-  async getUserAlgoBadge(user_id, username){
-    if (this.useBadgesExplorerApi) {
-      return this.getUserAlgoBadgeWithExplorer(user_id);
-    }
-
+  async getUserAlgoBadge(username){
     if (!username) {
       if (this.debug) {
-        console.log("AlgoBadge: username missing while use_badges_explorer_api=false");
+        console.log("AlgoBadge: username missing");
       }
       return;
     }
@@ -151,7 +106,6 @@ export default class AlgoBadge extends Component {
     this.debugForAdmins = settings?.enable_debug_for_admins; //from settings.yml
     this.debug4All = settings?.enable_debug_for_all; //from settings.yml    
     this.debugForUsers = settings?.enable_debug_for_user_ids; //from settings.yml
-    this.useBadgesExplorerApi = settings?.use_badges_explorer_api ?? true; //from settings.yml
     var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null;    
     this.debug = false;
     
@@ -164,10 +118,10 @@ export default class AlgoBadge extends Component {
     if(this.component_debug && debugForIDs && debugForIDs.includes(currentUser.id.toString())) { this.debug = true; }
 
     if(this.component_debug && this.debug4All){ this.debug = true; }    
-    if(this.debug){ console.log('algoBadge constructor:', this.args?.userId, this.args?.username, this.userIdIsSet, this.usernameIsSet); }   
+    if(this.debug){ console.log('algoBadge constructor:', this.args?.userId, this.args?.username, this.usernameIsSet); }   
 
-    if(this.component_enable && this.userIdIsSet && !showOnlyForAdmins){      
-      this.getUserAlgoBadge(this.args?.userId, this.args?.username)
+    if(this.component_enable && this.usernameIsSet && !showOnlyForAdmins){      
+      this.getUserAlgoBadge(this.args?.username)
       .then(() => {
         if(this.debug){ console.log('got badge for:', this.args.userId); }
       });   
