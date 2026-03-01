@@ -35,7 +35,7 @@ export default class AlgoBadge extends Component {
 
   async getUserAlgoBadge(user_id){ 
     if(this.debug){console.log('getUserAlgoBadge: '+ user_id);}  
-    ajax(`/admin/plugins/explorer/queries/11/run`, {
+    ajax(`/admin/plugins/discourse-data-explorer/queries/11/run`, { // was /explorer/
       type: "POST",
       headers: { "Api-Username": "system", "Api-Key": "d0082b555db3459e85fee2d29b29b79edc689d8767a80fef33761ef16869d83c" }, //Data Explorer Ready Only - query 11
       data: {"params": "{\"user_id\": \""+user_id+"\"}"}
