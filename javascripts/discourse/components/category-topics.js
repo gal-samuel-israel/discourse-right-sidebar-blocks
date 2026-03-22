@@ -2,8 +2,10 @@ import Category from "discourse/models/category";
 import getURL from "discourse-common/lib/get-url";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
+import { trustHTML } from "@ember/template";
 import { service } from "@ember/service";
 import User from "discourse/models/user";
+import { replaceEmoji } from "discourse/helpers/replace-emoji";
 
 export default class CategoryTopics extends Component {
   @service store;
@@ -76,6 +78,7 @@ export default class CategoryTopics extends Component {
         }
         // Update the title to remove 'XYZ' string
         topic.title = topic.title.replace(/Cooking Tips with Jon Ramsey /g, '');  
+        topic.safeTitle = trustHTML(replaceEmoji([topic.title]));
       });
 
       this.topics = results.slice(0, count);

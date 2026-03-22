@@ -11,7 +11,7 @@
 <div class="category-topics--content">
   {{#each this.topics as |topic|}}
     <a href={{topic.url}} class="category-topics--topic">
-      {{html-safe (replace-emoji topic.title)}}
+      {{topic.safeTitle}}
       <!-- span>
         ({{topic.posts_count}})
       </span -->

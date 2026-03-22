@@ -17,7 +17,7 @@
         <span class="gamification--user-index">{{inc index}}</span>
         <span data-user-card={{item.username}} class="gamification--user-card">
           {{avatar item imageSize="small"}}
-          <span class="limit-username-length" title={{html-safe item.username}}>{{html-safe item.username}}</span>          
+          <span class="limit-username-length" title={{item.username}}>{{item.username}}</span>
         </span>
         <span class="gamification--user-score">
           <AlgoBadge @userId={{item.id}} @username={{item.username}} />
@@ -66,7 +66,7 @@
           <span class="gamification--user-index">{{inc index}}</span>
           <span data-user-card={{item.username}} class="gamification--user-card">
             {{avatar item imageSize="small"}}
-            <span class="limit-username-length" title={{html-safe item.username}}>{{html-safe item.username}}</span>          
+            <span class="limit-username-length" title={{item.username}}>{{item.username}}</span>
           </span>
           <span class="gamification--user-score">
             <AlgoBadge @userId={{item.id}} @username={{item.username}} />

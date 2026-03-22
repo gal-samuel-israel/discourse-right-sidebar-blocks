@@ -1,6 +1,8 @@
 import Component from "@glimmer/component";
 import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
+import { trustHTML } from "@ember/template";
+import { replaceEmoji } from "discourse/helpers/replace-emoji";
 
 function stripHtml(html) {
   let doc = new DOMParser().parseFromString(html, "text/html");
@@ -27,6 +29,7 @@ export default class RecentReplies extends Component {
 
       results.forEach((reply) => {
         reply.excerpt = stripHtml(reply.cooked);
+        reply.safeTopicTitle = trustHTML(replaceEmoji([reply.topic_title]));
 
         if (reply.excerpt.length > excerptLimit) {
           reply.excerpt =
