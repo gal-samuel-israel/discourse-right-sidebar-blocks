@@ -1,12 +1,17 @@
 import Component from "@glimmer/component";
+import { trustHTML } from "@ember/template";
 import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
-import { trustHTML } from "@ember/template";
-import { replaceEmoji } from "discourse/helpers/replace-emoji";
 
 function stripHtml(html) {
   let doc = new DOMParser().parseFromString(html, "text/html");
   return doc.body.textContent || "";
+}
+
+function trustText(text) {
+  const element = document.createElement("div");
+  element.textContent = text || "";
+  return trustHTML(element.innerHTML);
 }
 
 export default class RecentReplies extends Component {
@@ -29,7 +34,7 @@ export default class RecentReplies extends Component {
 
       results.forEach((reply) => {
         reply.excerpt = stripHtml(reply.cooked);
-        reply.safeTopicTitle = trustHTML(replaceEmoji([reply.topic_title]));
+        reply.safeTopicTitle = trustText(reply.topic_title);
 
         if (reply.excerpt.length > excerptLimit) {
           reply.excerpt =

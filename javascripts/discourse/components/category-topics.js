@@ -5,7 +5,12 @@ import { tracked } from "@glimmer/tracking";
 import { trustHTML } from "@ember/template";
 import { service } from "@ember/service";
 import User from "discourse/models/user";
-import { replaceEmoji } from "discourse/helpers/replace-emoji";
+
+function trustText(text) {
+  const element = document.createElement("div");
+  element.textContent = text || "";
+  return trustHTML(element.innerHTML);
+}
 
 export default class CategoryTopics extends Component {
   @service store;
@@ -77,8 +82,8 @@ export default class CategoryTopics extends Component {
           topic.url += `/${topic.last_read_post_number}`;
         }
         // Update the title to remove 'XYZ' string
-        topic.title = topic.title.replace(/Cooking Tips with Jon Ramsey /g, '');  
-        topic.safeTitle = trustHTML(replaceEmoji([topic.title]));
+        topic.title = topic.title.replace(/Cooking Tips with Jon Ramsey /g, '');
+        topic.safeTitle = trustText(topic.title);
       });
 
       this.topics = results.slice(0, count);
