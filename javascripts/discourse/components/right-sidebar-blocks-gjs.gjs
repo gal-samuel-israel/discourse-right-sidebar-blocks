@@ -1,4 +1,5 @@
-import RightSidebarBlocksLegacy from "./right-sidebar-blocks.js";
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 
 import AlgoCustomHtmlGjs from "./algo-custom-html-gjs.gjs";
 import CategoryTopicsGjs from "./category-topics-gjs.gjs";
@@ -18,11 +19,35 @@ const BLOCK_COMPONENTS = {
   "top-contributors": TopContributorsGjs,
 };
 
-export default class RightSidebarBlocksGjs extends RightSidebarBlocksLegacy {
+export default class RightSidebarBlocksGjs extends Component {
+  @tracked blocks = [];
+
   constructor() {
     super(...arguments);
 
-    this.blocks = this.blocks
+    const blocksArray = [];
+
+    JSON.parse(settings.blocks).forEach((block) => {
+      if (BLOCK_COMPONENTS[block.name]) {
+        block.classNames = `rs-component rs-${block.name}`;
+        block.parsedParams = {};
+
+        if (block.params) {
+          block.params.forEach((p) => {
+            block.parsedParams[p.name] = p.value;
+          });
+        }
+
+        blocksArray.push(block);
+      } else {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `The GJS component "${block.name}" was not found, please update the configuration for discourse-right-sidebar-blocks.`
+        );
+      }
+    });
+
+    this.blocks = blocksArray
       .filter((block) => {
         if (BLOCK_COMPONENTS[block.name]) {
           return true;

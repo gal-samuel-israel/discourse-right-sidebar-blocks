@@ -1,11 +1,47 @@
 import { i18n } from "discourse-i18n";
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
+import { service } from "@ember/service";
 import SubCategoryItem from "discourse/components/sub-category-item";
 
-import SubcategoryListLegacy from "./subcategory-list.js";
+export default class SubcategoryListGjs extends Component {
+  @service router;
+  @tracked parentCategory = null;
 
-export default class SubcategoryListGjs extends SubcategoryListLegacy {
   get headingLabel() {
     return i18n(themePrefix("subcategory_list.heading"));
+  }
+
+  get shouldShowBlock() {
+    const currentRoute = this.router.currentRoute;
+
+    if (!currentRoute.attributes?.category) {
+      return false;
+    }
+
+    const category = currentRoute.attributes.category;
+    this.parentCategory = category;
+
+    if (category.subcategories && this.shouldDisplay(category.id)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  shouldDisplay(parentCategoryId) {
+    const displayInCategories = this.args?.params?.displayInCategories
+      ?.split(",")
+      .map(Number);
+
+    return (
+      displayInCategories === undefined ||
+      displayInCategories.includes(parentCategoryId)
+    );
+  }
+
+  willDestroy() {
+    this.parentCategory = null;
   }
 
   <template>

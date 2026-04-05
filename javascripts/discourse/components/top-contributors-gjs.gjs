@@ -1,16 +1,35 @@
 import avatar from "discourse/helpers/avatar";
 import icon from "discourse/helpers/d-icon";
 import { i18n } from "discourse-i18n";
+import Component from "@glimmer/component";
+import { ajax } from "discourse/lib/ajax";
+import { tracked } from "@glimmer/tracking";
 
-import TopContributorsLegacy from "./top-contributors.js";
+export default class TopContributorsGjs extends Component {
+  @tracked topContributors = null;
 
-export default class TopContributorsGjs extends TopContributorsLegacy {
+  constructor() {
+    super(...arguments);
+
+    const count = this.args?.params?.count || 5;
+
+    ajax("/directory_items.json?period=yearly&order=likes_received").then(
+      (data) => {
+        this.topContributors = data.directory_items.slice(0, count);
+      }
+    );
+  }
+
   get headingLabel() {
     return i18n(themePrefix("top_contributors.heading"));
   }
 
   get viewAllLabel() {
     return i18n(themePrefix("top_contributors.view_all"));
+  }
+
+  willDestroy() {
+    this.topContributors = null;
   }
 
   <template>

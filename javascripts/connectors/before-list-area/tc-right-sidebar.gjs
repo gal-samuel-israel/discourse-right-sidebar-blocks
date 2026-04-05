@@ -1,7 +1,6 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
 
-import RightSidebarBlocksLegacy from "../../discourse/components/right-sidebar-blocks.js";
 import RightSidebarBlocksGjs from "../../discourse/components/right-sidebar-blocks-gjs.gjs";
 
 export default class TcRightSidebar extends Component {
@@ -23,18 +22,10 @@ export default class TcRightSidebar extends Component {
     return currentRouteName !== "discovery.categories";
   }
 
-  get useGjs() {
-    return settings.use_gjs;
-  }
-
   <template>
     {{#if this.showSidebar}}
       <div class="tc-right-sidebar gjs-added">
-        {{#if this.useGjs}}
-          <RightSidebarBlocksGjs />
-        {{else}}
-          <RightSidebarBlocksLegacy />
-        {{/if}}
+        <RightSidebarBlocksGjs />
       </div>
     {{/if}}
   </template>
