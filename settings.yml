@@ -1,3 +1,7 @@
+use_gjs:
+  type: bool
+  default: true
+  description: "Use the new GJS component tree instead of the legacy js+hbs implementation"
 enable_debug_for_user_ids:   
   type: list
   default: "2|42"
