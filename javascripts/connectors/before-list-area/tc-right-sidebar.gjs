@@ -29,7 +29,7 @@ export default class TcRightSidebar extends Component {
 
   <template>
     {{#if this.showSidebar}}
-      <div class="tc-right-sidebar">
+      <div class="tc-right-sidebar gjs-added">
         {{#if this.useGjs}}
           <RightSidebarBlocksGjs />
         {{else}}

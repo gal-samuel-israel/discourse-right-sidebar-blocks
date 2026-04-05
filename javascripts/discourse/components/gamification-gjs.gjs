@@ -38,55 +38,55 @@ export default class GamificationGjs extends GamificationLegacy {
 
   get primaryViewAllClass() {
     return this.primaryViewAllLink
-      ? "gamification--view-all show-link"
-      : "gamification--view-all hide-link";
+      ? "gamification--view-all show-link gjs-added"
+      : "gamification--view-all hide-link gjs-added";
   }
 
   get badgesViewAllClass() {
     return this.viewAllBadgesLink
-      ? "gamification--view-badges show-link"
-      : "gamification--view-badges hide-link";
+      ? "gamification--view-badges show-link gjs-added"
+      : "gamification--view-badges hide-link gjs-added";
   }
 
   get secondaryViewAllClass() {
     return this.viewAllLink
-      ? "gamification--view-all show-link"
-      : "gamification--view-all hide-link";
+      ? "gamification--view-all show-link gjs-added"
+      : "gamification--view-all hide-link gjs-added";
   }
 
   get monthlyControlClass() {
     return this.activeMonthly
-      ? "gamification-control active"
-      : "gamification-control";
+      ? "gamification-control active gjs-added"
+      : "gamification-control gjs-added";
   }
 
   get allTimeControlClass() {
     return this.activeAll
-      ? "gamification-control active"
-      : "gamification-control";
+      ? "gamification-control active gjs-added"
+      : "gamification-control gjs-added";
   }
 
   get monthlyControlClass2() {
     return this.activeMonthly_2
-      ? "gamification-control active"
-      : "gamification-control";
+      ? "gamification-control active gjs-added"
+      : "gamification-control gjs-added";
   }
 
   get allTimeControlClass2() {
     return this.activeAll_2
-      ? "gamification-control active"
-      : "gamification-control";
+      ? "gamification-control active gjs-added"
+      : "gamification-control gjs-added";
   }
 
   <template>
-    <div class="gamification-info-link">
+    <div class="gamification-info-link gjs-added">
       <a href="/t/community-leaderboard/178" title="About the Community Leaderboard">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
           fill="currentColor"
-          class="bi bi-info-circle"
+          class="bi bi-info-circle gjs-added"
           viewBox="0 0 16 16"
         >
           <path
@@ -98,11 +98,11 @@ export default class GamificationGjs extends GamificationLegacy {
         </svg>
       </a>
     </div>
-    <h3 class="gamification-heading">
+    <h3 class="gamification-heading gjs-added">
       {{#if this.isAlgoSecUser}}AlgoSec {{/if}}{{this.headingLabel}}
     </h3>
 
-    <div class="gamification-controls-wrap">
+    <div class="gamification-controls-wrap gjs-added">
       <a
         href="/leaderboard"
         {{on "click" this.scoreForMonth}}
@@ -119,20 +119,20 @@ export default class GamificationGjs extends GamificationLegacy {
       </a>
     </div>
 
-    <div class="gamification--container">
+    <div class="gamification--container gjs-added">
       {{#if this.loading}}
-        <div class="gamification-loader">Loading</div>
+        <div class="gamification-loader gjs-added">Loading</div>
       {{else}}
         {{#each this.gamificatinObj.users as |item index|}}
-          <div class="gamification--user">
-            <span class="gamification--user-index">{{inc index}}</span>
-            <span data-user-card={{item.username}} class="gamification--user-card">
+          <div class="gamification--user gjs-added">
+            <span class="gamification--user-index gjs-added">{{inc index}}</span>
+            <span data-user-card={{item.username}} class="gamification--user-card gjs-added">
               {{avatar item imageSize="small"}}
-              <span class="limit-username-length" title={{item.username}}>
+              <span class="limit-username-length gjs-added" title={{item.username}}>
                 {{item.username}}
               </span>
             </span>
-            <span class="gamification--user-score">
+            <span class="gamification--user-score gjs-added">
               <AlgoBadgeGjs @userId={{item.id}} @username={{item.username}} />
               <svg
                 width="16"
@@ -140,7 +140,7 @@ export default class GamificationGjs extends GamificationLegacy {
                 viewBox="0 0 16 22"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                class="gamification--user-badge"
+                class="gamification--user-badge gjs-added"
               >
                 <path
                   d="M8.14877 8.88745C5.28709 8.88745 2.95892 11.2144 2.95892 14.0741C2.95892 16.9339 5.28709 19.2612 8.14877 19.2612C11.0104 19.2612 13.3386 16.9343 13.3386 14.0741C13.3386 11.214 11.0104 8.88745 8.14877 8.88745ZM10.6785 13.893L9.73509 14.8122L9.95764 16.1099C10.0196 16.4715 9.64024 16.7474 9.31505 16.5768L8.14877 15.964L6.98248 16.5768C6.65797 16.747 6.2779 16.4718 6.33989 16.1099L6.56245 14.8122L5.61905 13.893C5.35619 13.6364 5.50219 13.1908 5.86464 13.1377L7.16845 12.9484L7.75176 11.7679C7.913 11.4402 8.38351 11.4375 8.54611 11.7679L9.12908 12.9484L10.4332 13.1377C10.7957 13.1908 10.9417 13.636 10.6788 13.893H10.6785Z"
@@ -172,9 +172,9 @@ export default class GamificationGjs extends GamificationLegacy {
 
     {{#if this.isAlgoSecUser}}
       <hr />
-      <h3 class="gamification-heading">Users {{this.headingLabel}}</h3>
+      <h3 class="gamification-heading gjs-added">Users {{this.headingLabel}}</h3>
 
-      <div class="gamification-controls-wrap">
+      <div class="gamification-controls-wrap gjs-added">
         <a
           href="/leaderboard"
           {{on "click" this.scoreForMonth_2}}
@@ -191,20 +191,20 @@ export default class GamificationGjs extends GamificationLegacy {
         </a>
       </div>
 
-      <div class="gamification--container">
+      <div class="gamification--container gjs-added">
         {{#if this.loading_2}}
-          <div class="gamification-loader">Loading</div>
+          <div class="gamification-loader gjs-added">Loading</div>
         {{else}}
           {{#each this.gamificatinObj_2.users as |item index|}}
-            <div class="gamification--user">
-              <span class="gamification--user-index">{{inc index}}</span>
-              <span data-user-card={{item.username}} class="gamification--user-card">
+            <div class="gamification--user gjs-added">
+              <span class="gamification--user-index gjs-added">{{inc index}}</span>
+              <span data-user-card={{item.username}} class="gamification--user-card gjs-added">
                 {{avatar item imageSize="small"}}
-                <span class="limit-username-length" title={{item.username}}>
+                <span class="limit-username-length gjs-added" title={{item.username}}>
                   {{item.username}}
                 </span>
               </span>
-              <span class="gamification--user-score">
+              <span class="gamification--user-score gjs-added">
                 <AlgoBadgeGjs @userId={{item.id}} @username={{item.username}} />
                 <svg
                   width="16"
@@ -212,7 +212,7 @@ export default class GamificationGjs extends GamificationLegacy {
                   viewBox="0 0 16 22"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  class="gamification--user-badge"
+                  class="gamification--user-badge gjs-added"
                 >
                   <path
                     d="M8.14877 8.88745C5.28709 8.88745 2.95892 11.2144 2.95892 14.0741C2.95892 16.9339 5.28709 19.2612 8.14877 19.2612C11.0104 19.2612 13.3386 16.9343 13.3386 14.0741C13.3386 11.214 11.0104 8.88745 8.14877 8.88745ZM10.6785 13.893L9.73509 14.8122L9.95764 16.1099C10.0196 16.4715 9.64024 16.7474 9.31505 16.5768L8.14877 15.964L6.98248 16.5768C6.65797 16.747 6.2779 16.4718 6.33989 16.1099L6.56245 14.8122L5.61905 13.893C5.35619 13.6364 5.50219 13.1908 5.86464 13.1377L7.16845 12.9484L7.75176 11.7679C7.913 11.4402 8.38351 11.4375 8.54611 11.7679L9.12908 12.9484L10.4332 13.1377C10.7957 13.1908 10.9417 13.636 10.6788 13.893H10.6785Z"

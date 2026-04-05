@@ -42,7 +42,7 @@ export default class RightSidebarBlocksGjs extends RightSidebarBlocksLegacy {
 
   <template>
     {{#each this.blocks as |block|}}
-      <div class={{block.classNames}}>
+      <div class={{concat block.classNames " gjs-added"}}>
         {{#let block.componentClass as |BlockComponent|}}
           <BlockComponent @params={{block.parsedParams}} />
         {{/let}}

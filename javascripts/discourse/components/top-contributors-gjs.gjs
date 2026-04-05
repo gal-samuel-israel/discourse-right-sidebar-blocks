@@ -14,28 +14,28 @@ export default class TopContributorsGjs extends TopContributorsLegacy {
   }
 
   <template>
-    <h3 class="top-contributors-heading">
+    <h3 class="top-contributors-heading gjs-added">
       {{this.headingLabel}}
     </h3>
 
-    <div class="top-contributors--container">
+    <div class="top-contributors--container gjs-added">
       {{#each this.topContributors as |item|}}
-        <div class="top-contributors--user">
+        <div class="top-contributors--user gjs-added">
           <span
             data-user-card={{item.user.username}}
-            class="top-contributors--user-badge"
+            class="top-contributors--user-badge gjs-added"
           >
             {{avatar item.user imageSize="small"}}
             {{item.user.username}}
           </span>
-          <span class="top-contributors--user-likes">
+          <span class="top-contributors--user-likes gjs-added">
             {{icon "heart"}} {{item.likes_received}}
           </span>
         </div>
       {{/each}}
     </div>
 
-    <a class="top-contributors--view-all" href="/u?order=likes_received&period=yearly">
+    <a class="top-contributors--view-all gjs-added" href="/u?order=likes_received&period=yearly">
       {{this.viewAllLabel}}
     </a>
   </template>

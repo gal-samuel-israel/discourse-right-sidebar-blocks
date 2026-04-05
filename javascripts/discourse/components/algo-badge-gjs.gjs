@@ -3,7 +3,7 @@ import AlgoBadgeLegacy from "./algo-badge.js";
 export default class AlgoBadgeGjs extends AlgoBadgeLegacy {
   <template>
     {{#if this.algoBadgeInfo}}
-      <span class="algobadge-wrap">
+      <span class="algobadge-wrap gjs-added">
         <a href={{this.algoBadgeGrants}}>
           <img src={{this.algoBadgeUrl}} title={{this.algoBadgeName}} />
         </a>

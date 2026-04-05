@@ -9,12 +9,12 @@ export default class PopularTagsGjs extends PopularTagsLegacy {
 
   <template>
     {{#if this.topTags}}
-      <h3 class="popular-tags-heading">
+      <h3 class="popular-tags-heading gjs-added">
         {{this.headingLabel}}
       </h3>
 
       {{#each this.topTags as |tag|}}
-        <a href={{tag.url}} class="popular-tags--tag">
+        <a href={{tag.url}} class="popular-tags--tag gjs-added">
           {{tag.name}}
         </a>
       {{/each}}

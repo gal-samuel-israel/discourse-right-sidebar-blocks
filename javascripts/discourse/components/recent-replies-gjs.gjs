@@ -14,28 +14,28 @@ export default class RecentRepliesGjs extends RecentRepliesLegacy {
   }
 
   <template>
-    <h3 class="recent-replies--heading">
+    <h3 class="recent-replies--heading gjs-added">
       {{this.headingLabel}}
     </h3>
 
-    <div class="recent-replies--container">
+    <div class="recent-replies--container gjs-added">
       {{#each this.replies as |reply|}}
-        <div class="recent-replies--reply">
-          <div class="recent-replies--col">
+        <div class="recent-replies--reply gjs-added">
+          <div class="recent-replies--col gjs-added">
             {{avatar reply imageSize="small"}}
           </div>
-          <div class="recent-replies--col">
-            <div class="recent-replies--excerpt">
+          <div class="recent-replies--col gjs-added">
+            <div class="recent-replies--excerpt gjs-added">
               {{reply.excerpt}}
             </div>
-            <div class="recent-replies--topic-title">
-              <a class="recent-replies--topic-link" href={{this.replyUrl reply}}>
+            <div class="recent-replies--topic-title gjs-added">
+              <a class="recent-replies--topic-link gjs-added" href={{this.replyUrl reply}}>
                 {{reply.safeTopicTitle}}
               </a>
             </div>
           </div>
-          <div class="recent-replies--col">
-            <span class="recent-replies--date">
+          <div class="recent-replies--col gjs-added">
+            <span class="recent-replies--date gjs-added">
               {{formatDate reply.created_at}}
             </span>
           </div>

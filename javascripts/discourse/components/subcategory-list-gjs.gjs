@@ -10,13 +10,13 @@ export default class SubcategoryListGjs extends SubcategoryListLegacy {
 
   <template>
     {{#if this.shouldShowBlock}}
-      <h3 class="subcategory-list--heading">
+      <h3 class="subcategory-list--heading gjs-added">
         {{this.headingLabel}}
       </h3>
 
-      <div class="subcategory-list--items">
+      <div class="subcategory-list--items gjs-added">
         {{#each this.parentCategory.subcategories as |subcat|}}
-          <div class="subcategory-list--item">
+          <div class="subcategory-list--item gjs-added">
             <SubCategoryItem @category={{subcat}} />
           </div>
         {{/each}}
