@@ -74,7 +74,7 @@ export default class GamificationGjs extends Component {
       this.debug = true;
     }
 
-    groups = currentUser.groups;
+    groups = currentUser.visibleGroups;
     if (
       typeof groups !== "object" &&
       Object.prototype.toString.call(groups) !== "[object Object]"
